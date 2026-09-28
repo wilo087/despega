@@ -31,8 +31,19 @@ export function OutcomeSheet({
   useEffect(() => {
     const timer = window.setTimeout(() => setTalking(false), 1_800);
     continueRef.current?.focus({ preventScroll: true });
-    return () => window.clearTimeout(timer);
-  }, []);
+    // Acoplada al panel, la tarjeta puede nacer bajo el borde de la pantalla (escenas cortas
+    // en móvil): cuando termina de entrar, se desplaza lo justo para que «Continuar» se vea.
+    const reveal = docked
+      ? window.setTimeout(() => {
+          const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          continueRef.current?.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
+        }, 350)
+      : undefined;
+    return () => {
+      window.clearTimeout(timer);
+      window.clearTimeout(reveal);
+    };
+  }, [docked]);
 
   return (
     <motion.div

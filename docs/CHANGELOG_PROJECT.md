@@ -1,5 +1,28 @@
 # Changelog del proyecto
 
+## 2026-09-28 — Verificación completa del rediseño y correcciones
+
+- Recorrido completo del módulo en localhost con una cuenta sintética de estudiante
+  (autorizado; escribe en las tablas compartidas de DEV): 3 sesiones, 19 escenas y
+  todos los tipos de pantalla y mini-juego, en escritorio (1440 px) y móvil (390 px),
+  sin errores de consola. Segunda pasada en móvil con el flujo real (sin recargar),
+  incluido un reloj vencido, y reinicio del intento desde el backoffice de punta a punta.
+- Consecuencia acoplada: al aparecer se desplaza lo justo para que «Continuar» quede
+  visible (en escenas cortas en móvil nacía bajo el borde) y el contenedor fijo tapa con
+  un degradé lo que asomaba bajo su margen.
+- Pantalla final: «¡Terminaste tu semana en PixelForge!» ya no pasa el lema completo a
+  minúsculas (rompía el nombre propio).
+- Backoffice: los campos tienen borde de 1 px en `line-strong` y sin sombra, como la
+  web; HeroUI traía `--field-border-width: 0px`.
+- Formularios en modo Cognito revisados con builds de producción aparte y un pool
+  ficticio (sin envíos): ingreso del admin y de la web, registro y confirmación; el
+  botón de mostrar u ocultar la contraseña funciona en escritorio y móvil. También el
+  menú de cuenta de `/inicio` en móvil.
+- Observación sin cambio: `/registro` se prerenderiza, así que el modo de identidad
+  queda fijado al compilar. En Amplify es correcto porque `write-amplify-env.mjs`
+  escribe las variables antes del build.
+- Validación: `typecheck`, `lint`, 72 pruebas y `build:web`/`build:admin` pasan.
+
 ## 2026-09-28 — Rediseño del backoffice como app
 
 - El admin adopta el sistema visual de la web de estudiantes sobre HeroUI v3: radio
@@ -27,8 +50,7 @@
   1440 px y 390 px (acceso, panel, estudiantes, ficha, módulos y guion), menú de
   cuenta en móvil, escena desplegada, diálogo de reinicio abierto y cancelado, y rol
   de orientación sin botón de reinicio; todo en solo lectura, con los POST
-  bloqueados salvo el ingreso local, que solo firma una cookie. El campo de
-  contraseña (solo Cognito) no se vio en pantalla: el entorno local no lo muestra.
+  bloqueados salvo el ingreso local, que solo firma una cookie.
 
 ## 2026-09-28 — Rediseño de la web de estudiantes como app
 

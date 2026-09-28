@@ -28,7 +28,7 @@ y su volumen se conserva sin migración. Falta validar los flujos Cognito en AWS
 | CDK: tablas, dos pools, roles SSR mínimos, config de Apps Amplify, validación IAM | Desplegado en `qrioso-dev` | `Despega-dev CREATE_COMPLETE`; 12 pruebas de infra/empaquetado, `synth:dev` y `synth:prd` pasan; `diff:dev` sin diferencias; variables efectivas y roles de ambas ramas verificados |
 | Flujo de deploy igual al del proyecto de referencia | Listo | `validate-amplify-domains.ts` idéntico; `cdk.json` con cuenta, perfil, rama y App IDs por stage |
 | Builds de producción de web y admin | Publicados en DEV | Jobs `4` de ambas Apps `SUCCEED`, commit `9cbd877`; empaquetado corregido sin aumentar capacidad. Flujos autenticados en AWS pendientes |
-| Web de estudiantes como app: shell a pantalla completa, sistema visual unificado (radios, botones, campos con ícono) | Listo | Capturas en 1440 px y 390 px de acceso, `/inicio`, hub, reproductor y landing; `typecheck` y `lint` de web |
+| Web de estudiantes como app: shell a pantalla completa, sistema visual unificado (radios, botones, campos con ícono), reproductor en paneles | Listo | Módulo completo jugado en 1440 px y 390 px (19 escenas, todos los mini-juegos, reloj vencido) sin errores de consola; formularios en modo Cognito con pool ficticio; `typecheck`, `lint` y `build:web` |
 | Backoffice como app: shell a pantalla completa, escala de radios de la web sobre HeroUI, acceso con campos con ícono, listas en móvil | Listo | Capturas en 1440 px y 390 px de acceso, panel, estudiantes, ficha, módulos y guion; menú de cuenta, reinicio (cancelado) y rol de orientación; `typecheck`, `lint`, pruebas y `build:admin` |
 | Identidad visual desde el logo (`@despega/brand`: logo vectorial, paleta, íconos de app y de carrera) en web y admin | Listo | Contraste WCAG AA de cada par texto/fondo en uso; capturas de landing (escritorio y 390 px), ingreso, `/inicio`, hub, reproductor y backoffice; `favicon.ico`, `icon.svg` y `apple-icon.png` servidos en ambas apps |
 
@@ -49,10 +49,10 @@ y su volumen se conserva sin migración. Falta validar los flujos Cognito en AWS
    (`docs/architecture/functional-analysis.md`).
 7. **Repositorio Git remoto**: `qrioso-software/despega`, conectado a las Apps de
    Amplify de `dev` sobre `develop`.
-8. **Revisión visual del reproductor rediseñado**: solo se vio la escena de chat 1.4.
-   Faltan clasificación, tablero, dashboard en vivo, videollamada, cinemática,
-   notificación, resúmenes y la consecuencia acoplada; avanzar el juego escribe en
-   las tablas compartidas de DEV, así que requiere una cuenta de prueba autorizada.
+8. **Cuenta sintética de prueba en DEV**: «Alex Prueba UI»
+   (`revision.simulador@example.com`, acceso local), creada para verificar el
+   reproductor; tiene tres intentos (dos completos). No hay borrado desde la app:
+   retirarla a mano de `despega_dev_core`/`despega_dev_simulation` si molesta.
 
 ## Siguiente paso recomendado
 

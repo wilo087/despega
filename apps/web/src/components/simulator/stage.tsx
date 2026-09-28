@@ -64,7 +64,10 @@ export function SceneWorkspace({
             <Waiting onSkip={onSkip} />
           )}
         </div>
-        {outcome && <div className="sticky bottom-0 z-10 px-3 pb-3 sm:px-4 sm:pb-4">{outcome}</div>}
+        {outcome && (
+          // El degradé tapa lo que queda bajo el margen de la tarjeta fija al pie.
+          <div className="sticky bottom-0 z-10 bg-gradient-to-t from-paper from-40% to-transparent px-3 pb-3 pt-4 sm:px-4 sm:pb-4">{outcome}</div>
+        )}
       </section>
     </div>
   );

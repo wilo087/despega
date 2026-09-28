@@ -52,6 +52,8 @@ html[data-theme='light'] {
   --field-background: #ffffff;
   --field-foreground: var(--foreground);
   --field-border: var(--despega-line-strong);
+  --field-border-width: 1px;
+  --field-shadow: 0 0 0 0 transparent;
   --field-border-hover: var(--despega-placeholder);
   --field-border-focus: var(--accent);
   --surface-shadow: 0 1px 2px rgb(23 35 59 / 0.04);

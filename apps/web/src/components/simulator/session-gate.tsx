@@ -83,7 +83,7 @@ export function ModuleComplete({ module }: { module: ModuleView }) {
   return (
     <motion.section initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} className="card mx-auto max-w-2xl p-8 text-center shadow-soft sm:p-12">
       <span className="mx-auto grid size-16 place-items-center rounded-2xl bg-brand-soft text-brand-strong"><PartyPopper className="size-8" aria-hidden /></span>
-      <h1 className="mt-5 text-3xl font-bold sm:text-4xl">¡Terminaste {module.tagline.toLowerCase()}!</h1>
+      <h1 className="mt-5 text-3xl font-bold sm:text-4xl">¡Terminaste {module.tagline.charAt(0).toLowerCase() + module.tagline.slice(1)}!</h1>
       <p className="mx-auto mt-3 max-w-md text-ink-soft">
         Tu desempeño y tu perfil de afinidad de {module.title} quedaron guardados. Míralos cuando quieras.
       </p>
