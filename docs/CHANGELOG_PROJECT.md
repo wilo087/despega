@@ -1,5 +1,98 @@
 # Changelog del proyecto
 
+## 2026-11-12 — Landing, encuesta y CRM interno
+
+- Landing según documento del cliente; presentación previa en `/experiencia`.
+- Encuesta en cuatro pasos con ramas por perfil, autorización conjunta del tutor
+  confirmada por el usuario y consentimiento de novedades separado.
+- Persistencia transaccional de respuestas, recibos y contadores en core; sin GSI.
+- CRM exclusivo de administración: fichas, notas/estado con versión, filtros,
+  CSV privado y KPI por período con denominadores y límites explícitos.
+- CDK agrega UpdateItem solo para la partición CRM; sin nuevas variables.
+- Propuesta Qrioso: una diapositiva adicional, desglose de US$6,500 y total
+  actualizado de US$61,000. Sin deploy, campañas o integración externa.
+- Evidencia y comprobaciones en `docs/validation/landing-crm-2026-11-12.md`.
+
+## 2026-11-12 — Tutorial, ambientación y actuación de EnvaPlast
+
+- Guía opcional y repetible después de elegir personaje: movimiento a un marcador
+  libre, interacción y tablet. Guarda el paso y restaura la pausa anterior al
+  terminar u omitir. Mantiene detenidos los relojes y la producción, sin créditos,
+  afinidad ni decisiones de historia. Compatible con intentos existentes.
+- Botones iniciales siempre visibles en móvil, instrucciones desplazables y
+  recuperación del paso tras recarga. Ayuda disponible desde la cabecera y pausa.
+- Señales de sectores, mobiliario y utilería incluidos en el plano compartido;
+  puertas transitables en cada sector, cinco variantes de máquinas y envases
+  abiertos/cerrados según la etapa. Maquinaria orientada hacia el área de trabajo.
+- Articulaciones, miradas, parpadeo y diez clips por figura. Mezcla de poses,
+  giros suaves, saludo cercano, escucha, conversación, inspección y trabajo;
+  caminar acompasado al desplazamiento. Exportación que conserva poses completas.
+- Colisiones verificadas con la geometría y las animaciones finales; reducción
+  de gestos decorativos según preferencia del sistema, suspensión de figuras
+  lejanas y recuperación de resolución cuando el rendimiento se estabiliza.
+- 121 pruebas, tipos/lint y ambos builds pasan. Evidencia de 28 escenas en
+  escritorio y móvil emulado, más tablet y recorrido del tutorial. Se entrega
+  protocolo pendiente para estudiantes y dispositivos físicos. ADR 0010 y
+  `docs/validation/industrial-immersion-2026-11-12.md`. Sin publicación AWS.
+
+## 2026-11-12 — Revisión espacial y de jugabilidad de EnvaPlast
+
+- Se elimina el giro adicional de 180° del avatar al desplazarse: ahora mira
+  hacia la marcha con teclado, joystick y rutas de clic/toque.
+- Controles relativos a la cámara y animación según desplazamiento real; al
+  encontrar un obstáculo no continúa caminando en el sitio.
+- Geometría compartida entre Blender y navegación, puerta de entrada transitable,
+  mobiliario sólido, personajes separados del escritorio y las mesas y equipo
+  almacenado separado del inventario. Colisiones según la distribución vigente.
+- Operarios reubicados con sus máquinas; asignar a Wilfredo no crea una segunda
+  copia. La segunda selladora y las ausencias modifican también la navegación.
+- Rutas visibles hacia puntos accesibles; registro explícito del raycast de
+  Babylon para clic/toque. Áreas rojas y aviso para máquinas superpuestas al editar.
+- Cámara que conserva al avatar en el área libre, paredes que se atenúan cuando
+  ocultan la acción, sombras de contacto y etiquetas sin cruces con HUD o paneles.
+- Interacción táctil cercana, HUD móvil más compacto y cabecera del panel fija.
+  La tablet y los formularios bloquean el movimiento involuntario.
+- Plegar el panel conserva selecciones y cronómetros. Los borradores se guardan
+  solo cuando cambian y esperan a la reanudación si la partida está pausada.
+- Arte regenerado, auditoría espacial reproducible y evidencia de las 28 escenas
+  en escritorio y móvil emulado. Sin cambios de rúbricas ni publicación AWS.
+
+## 2026-11-12 — EnvaPlast en tres dimensiones
+
+- Segundo módulo jugable: Ingeniería Industrial, tres sesiones y 28 escenas.
+- Mundo isométrico con geometría original Blender, personajes, animaciones,
+  maquinaria, zonas, controles de computadora/táctiles y audio opcional.
+- Motor de objetivos, exploración, mediciones, causas, distribución, presupuesto,
+  inspección y personal; producción determinista y consecuencias entre jornadas.
+- Borradores, puntos de recuperación, pausa, tiempo ampliado y reintento del último
+  comando sin duplicar efectos; se conservan las tablas y versiones de Software.
+- Resultados de seis dimensiones, EST bipolar, categorías y selector de carrera
+  en el backoffice. Reglas y supuestos en ADR 0009 y `industrial-3d.md`.
+- Implementación y validación locales; sin deploy ni migración de datos.
+
+## 2026-10-30 — Actualizaciones de plataforma y guion v3
+
+- Requisitos del Word normalizados en `docs/requirements/2026-10-30-actualizaciones-plataforma.md`.
+  Se excluye la última nota sobre el juego por aclaración del operador.
+- «Experiencia» reemplaza «semana» en textos y guion; título del cliente, mensaje de
+  inicio y biografías del equipo visibles. Catálogo de 19 carreras con íconos
+  compartidos: cinco nuevas, Psicología separada en dos y Enfermería retirada.
+  Solo Software es jugable; las demás continúan como próximas.
+- 1.3 presenta cuatro comentarios sin clasificación ni puntaje; el diagnóstico de
+  1.4 conserva 15 s y no anticipa la respuesta. V3 completa el mejor/peor camino con
+  86/34 puntos. V2 conserva su clasificación y escala 91/32. Resolución explícita
+  por `moduleVersion` en datos, acciones, perfiles y agregados; sin migración (ADR 0008).
+- Sonido opcional en la llamada inicial, sintetizado con Web Audio y activado por
+  gesto, con silencio y limpieza al salir u ocultar la pestaña. Glosario declarativo
+  con ayuda por hover/foco y consulta desplegable para móvil.
+- 1.5 simplifica el texto y oculta el contador; mantiene la selección válida de 2–3
+  bloques. El visor del guion muestra los mismos comentarios del motor.
+- Fechas del admin fijadas a `America/Santo_Domingo`; los instantes siguen en UTC.
+  Correcciones de desbordamiento móvil en botones largos y cabecera pública,
+  detectadas durante la revisión de las mejoras.
+- Validación local documentada en `docs/validation/platform-updates-2026-10-30.md`.
+  Sin commit, push, despliegue, cambios de infraestructura o escrituras de datos AWS.
+
 ## 2026-09-28 — Verificación completa del rediseño y correcciones
 
 - Recorrido completo del módulo en localhost con una cuenta sintética de estudiante

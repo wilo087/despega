@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-12",
+  "tests": {
+    "packages/auth": 11,
+    "packages/simulator": 67,
+    "packages/data": 10,
+    "apps/admin": 1,
+    "infra": 12
+  },
+  "total": 101,
+  "failures": 0,
+  "softwareRandomGames": 1200,
+  "industrialReproducibleGames": 600
+}

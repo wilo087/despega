@@ -1,5 +1,5 @@
 import { getCareerProgressMany, listStudents, type StudentProfile } from '@despega/data';
-import { findModule } from '@despega/simulator';
+import { MODULES, findModule } from '@despega/simulator';
 import { Button, SearchField } from '@heroui/react';
 import { ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -18,7 +18,8 @@ export default async function StudentsPage({ searchParams }: PageProps<'/estudia
   const params = await searchParams;
   const query = first(params.q)?.trim().toLowerCase() ?? '';
   const cursor = first(params.cursor);
-  const pilot = findModule('ingenieria-software')!;
+  const careerId=typeof params.carrera==='string'&&findModule(params.carrera)?params.carrera:'ingenieria-software';
+  const pilot = findModule(careerId)!;
 
   let profiles: StudentProfile[] = [];
   let nextCursor: string | undefined;
@@ -61,10 +62,11 @@ export default async function StudentsPage({ searchParams }: PageProps<'/estudia
     <>
       <PageHeader
         title="Estudiantes"
-        description="Progreso en la carrera piloto. Abre un estudiante para ver su perfil, sus sesiones y cada decisión."
+        description={`Progreso en ${pilot.title}. Abre un estudiante para ver su perfil, sus sesiones y cada decisión.`}
       />
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <form method="get" className="flex w-full items-center gap-2 sm:w-auto" role="search">
+          <select name="carrera" aria-label="Carrera" defaultValue={careerId} className="rounded-xl border border-line bg-surface p-2">{Object.values(MODULES).map(m=><option key={m.careerId} value={m.careerId}>{m.title}</option>)}</select>
           <SearchField name="q" defaultValue={query} aria-label="Buscar estudiantes" className="min-w-0 flex-1 sm:w-80 sm:flex-none">
             <SearchField.Group>
               <SearchField.SearchIcon />
@@ -105,7 +107,7 @@ export default async function StudentsPage({ searchParams }: PageProps<'/estudia
                 <span />
               )}
               {nextCursor && (
-                <Link href={`/estudiantes?cursor=${encodeURIComponent(nextCursor)}`} className="flex items-center gap-1 text-sm font-semibold text-accent hover:underline">
+                <Link href={`/estudiantes?carrera=${careerId}&cursor=${encodeURIComponent(nextCursor)}`} className="flex items-center gap-1 text-sm font-semibold text-accent hover:underline">
                   Siguientes {PAGE_SIZE} <ArrowRight className="size-4" aria-hidden />
                 </Link>
               )}

@@ -3,6 +3,7 @@
 import { Archive, Inbox, Paperclip, Send, Star, Users } from 'lucide-react';
 import { CharacterAvatar } from '@/components/characters/character-avatar';
 import { ChatLine, SkipButton, TypingIndicator, speakerName } from '../conversation';
+import { GlossaryText } from '../glossary';
 import { OfficeWindow } from '../office-window';
 import { SceneWorkspace } from '../stage';
 import type { ScreenProps } from './types';
@@ -67,7 +68,7 @@ export function ChatScreen({ scene, module, reveal, interaction, outcome }: Scre
 /** Bandeja de entrada: reportes de soporte (1.3) o el correo de Andrés (1.5). */
 export function InboxScreen({ scene, module, reveal, interaction, outcome }: ScreenProps) {
   const email = scene.email;
-  const unread = scene.interaction.kind === 'classification' ? scene.interaction.items.length : 1;
+  const unread = scene.reports?.length ?? (scene.interaction.kind === 'classification' ? scene.interaction.items.length : 1);
   return (
     <SceneWorkspace
       kind={scene.interaction.kind}
@@ -97,19 +98,30 @@ export function InboxScreen({ scene, module, reveal, interaction, outcome }: Scr
             </aside>
             <div className="grid content-start gap-5 px-4 py-5 sm:px-6 sm:py-6">
               <Thread scene={scene} module={module} reveal={reveal} />
+              {scene.reports && (
+                <section aria-label="Comentarios de clientes" className="grid gap-3">
+                  {scene.reports.map((report) => (
+                    <article key={report.id} className="rounded-xl border border-line bg-surface p-4">
+                      <p className="text-xs font-semibold text-muted">De: {report.from}</p>
+                      <h3 className="mt-1 font-bold text-ink">{report.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-ink-soft">{report.body}</p>
+                    </article>
+                  ))}
+                </section>
+              )}
               {email && (
                 <article className="rounded-xl border border-line bg-surface p-4 sm:p-5">
                   <div className="flex items-center gap-3">
                     <CharacterAvatar characterId={email.from} mood="serious" size={44} decorative />
                     <div className="min-w-0">
-                      <p className="font-bold text-ink">{speakerName(module, email.from)} <span className="font-normal text-muted">· {module.characters[email.from]?.role}</span></p>
+                      <p className="font-bold text-ink">{speakerName(module, email.from)} <span className="font-normal text-muted">· <GlossaryText text={module.characters[email.from]?.role ?? ''} /></span></p>
                       <p className="text-xs text-muted">Para: ti · {scene.clock}</p>
                     </div>
                     <Paperclip className="ml-auto size-4 text-muted" aria-hidden />
                   </div>
                   <h3 className="mt-4 text-xl font-bold">{email.subject}</h3>
-                  <p className="mt-2 whitespace-pre-line text-ink-soft">{email.body}</p>
-                  {email.signature && <p className="mt-4 text-sm text-muted">— {email.signature}</p>}
+                  <p className="mt-2 whitespace-pre-line text-ink-soft"><GlossaryText text={email.body} /></p>
+                  {email.signature && <p className="mt-4 text-sm text-muted">— <GlossaryText text={email.signature} /></p>}
                 </article>
               )}
             </div>

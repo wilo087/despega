@@ -5,6 +5,7 @@ import { Mic, MicOff, MonitorUp, PhoneOff, VideoOff } from 'lucide-react';
 import { motion } from 'motion/react';
 import { CharacterAvatar } from '@/components/characters/character-avatar';
 import { NarrationLine, TypingIndicator, speakerName } from '../conversation';
+import { GlossaryText } from '../glossary';
 import { OfficeWindow } from '../office-window';
 import { SceneWorkspace } from '../stage';
 import type { ScreenProps } from './types';
@@ -50,7 +51,7 @@ export function VideoCallScreen({ scene, module, playerName, reveal, interaction
                         {active ? <Mic className="size-3.5 shrink-0 text-sun" aria-hidden /> : <MicOff className="size-3.5 shrink-0 opacity-60" aria-hidden />}
                         <span className="truncate">
                           {speakerName(module, id)}
-                          <span className="hidden font-normal opacity-70 @xl:inline"> · {module.characters[id]?.role}</span>
+                          <span className="hidden font-normal opacity-70 @xl:inline"> · <GlossaryText text={module.characters[id]?.role ?? ''} /></span>
                         </span>
                       </span>
                     </div>
@@ -88,7 +89,7 @@ export function VideoCallScreen({ scene, module, playerName, reveal, interaction
                   animate={{ opacity: 1, y: 0 }}
                   className={`text-[0.95rem] leading-relaxed ${index === reveal.visibleLines.length - 1 ? 'text-ink' : 'text-muted'}`}
                 >
-                  <strong className="font-bold text-ink">{speakerName(module, line.speaker)}:</strong> {line.text}
+                  <strong className="font-bold text-ink">{speakerName(module, line.speaker)}:</strong> <GlossaryText text={line.text} />
                 </motion.p>
               ),
             )}

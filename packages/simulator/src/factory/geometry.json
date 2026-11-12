@@ -1,0 +1,246 @@
+{
+  "bounds": {
+    "minX": -19,
+    "maxX": 19,
+    "minZ": -14,
+    "maxZ": 16
+  },
+  "zones": [
+    {
+      "id": "entrance",
+      "name": "Acceso y seguridad",
+      "x": -13,
+      "z": 9,
+      "w": 10,
+      "d": 8,
+      "door": 2.4
+    },
+    {
+      "id": "office",
+      "name": "Operaciones",
+      "x": -13,
+      "z": -7,
+      "w": 10,
+      "d": 12,
+      "door": 2.4
+    },
+    {
+      "id": "line",
+      "name": "Línea 2",
+      "x": 1,
+      "z": 0,
+      "w": 17,
+      "d": 24,
+      "door": 3.2
+    },
+    {
+      "id": "warehouse",
+      "name": "Bodega",
+      "x": 14,
+      "z": -8,
+      "w": 9,
+      "d": 10,
+      "door": 2.4
+    },
+    {
+      "id": "quality",
+      "name": "Control de calidad",
+      "x": 14,
+      "z": 3,
+      "w": 9,
+      "d": 9,
+      "door": 2.4
+    },
+    {
+      "id": "canteen",
+      "name": "Comedor",
+      "x": 14,
+      "z": 12,
+      "w": 9,
+      "d": 7,
+      "door": 2.4
+    }
+  ],
+  "furniture": [
+    {
+      "id": "desk",
+      "zone": "office",
+      "kind": "desk",
+      "x": 0,
+      "z": 0,
+      "w": 3,
+      "d": 1.5,
+      "h": 0.855
+    },
+    {
+      "id": "bin-a",
+      "zone": "warehouse",
+      "kind": "bin",
+      "x": -2.5,
+      "z": -1.8,
+      "w": 1.5,
+      "d": 1,
+      "h": 1.9
+    },
+    {
+      "id": "bin-b",
+      "zone": "warehouse",
+      "kind": "bin",
+      "x": 2.5,
+      "z": -1.8,
+      "w": 1.5,
+      "d": 1,
+      "h": 1.9
+    },
+    {
+      "id": "bin-c",
+      "zone": "warehouse",
+      "kind": "bin",
+      "x": -2.5,
+      "z": -3.4,
+      "w": 1.5,
+      "d": 1,
+      "h": 1.9
+    },
+    {
+      "id": "bin-d",
+      "zone": "warehouse",
+      "kind": "bin",
+      "x": 2.5,
+      "z": -3.4,
+      "w": 1.5,
+      "d": 1,
+      "h": 1.9
+    },
+    {
+      "id": "lunch-a",
+      "zone": "canteen",
+      "kind": "table",
+      "x": -2,
+      "z": 0,
+      "w": 2.2,
+      "d": 1.2,
+      "h": 0.82
+    },
+    {
+      "id": "lunch-b",
+      "zone": "canteen",
+      "kind": "table",
+      "x": 2,
+      "z": 0,
+      "w": 2.2,
+      "d": 1.2,
+      "h": 0.82
+    },
+    {
+      "id": "bench-a",
+      "zone": "canteen",
+      "kind": "bench",
+      "x": -2,
+      "z": -1,
+      "w": 2,
+      "d": 0.4,
+      "h": 0.48
+    },
+    {
+      "id": "bench-b",
+      "zone": "canteen",
+      "kind": "bench",
+      "x": -2,
+      "z": 1,
+      "w": 2,
+      "d": 0.4,
+      "h": 0.48
+    },
+    {
+      "id": "bench-c",
+      "zone": "canteen",
+      "kind": "bench",
+      "x": 2,
+      "z": -1,
+      "w": 2,
+      "d": 0.4,
+      "h": 0.48
+    },
+    {
+      "id": "bench-d",
+      "zone": "canteen",
+      "kind": "bench",
+      "x": 2,
+      "z": 1,
+      "w": 2,
+      "d": 0.4,
+      "h": 0.48
+    },
+    {
+      "id": "safety-locker",
+      "zone": "entrance",
+      "kind": "safety-cabinet",
+      "x": -3.2,
+      "z": 2.7,
+      "w": 1.4,
+      "d": 0.7,
+      "h": 1.8
+    },
+    {
+      "id": "work-desk",
+      "zone": "office",
+      "kind": "desk",
+      "x": -2.8,
+      "z": 3.8,
+      "w": 1.5,
+      "d": 0.8,
+      "h": 0.855
+    },
+    {
+      "id": "office-plant",
+      "zone": "office",
+      "kind": "plant",
+      "x": -3.6,
+      "z": -3.8,
+      "w": 0.85,
+      "d": 0.85,
+      "h": 1.4
+    },
+    {
+      "id": "line-tools",
+      "zone": "line",
+      "kind": "tool-cart",
+      "x": 6.3,
+      "z": 7.5,
+      "w": 1.1,
+      "d": 0.65,
+      "h": 1.05
+    },
+    {
+      "id": "staging-pallet",
+      "zone": "warehouse",
+      "kind": "pallet",
+      "x": 0,
+      "z": 0.2,
+      "w": 0.95,
+      "d": 1.2,
+      "h": 1.3
+    },
+    {
+      "id": "sample-cart",
+      "zone": "quality",
+      "kind": "quality-cart",
+      "x": 3,
+      "z": 2.6,
+      "w": 0.9,
+      "d": 0.7,
+      "h": 1.25
+    },
+    {
+      "id": "water-point",
+      "zone": "canteen",
+      "kind": "water",
+      "x": -3,
+      "z": -2.3,
+      "w": 0.8,
+      "d": 0.6,
+      "h": 1.65
+    }
+  ]
+}

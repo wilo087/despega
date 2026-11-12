@@ -35,6 +35,7 @@ export function toModuleView(module: CareerModule): ModuleView {
     tagline: module.tagline,
     company: module.company,
     playerRole: module.playerRole,
+    glossary: module.glossary,
     characters: Object.fromEntries(
       Object.values(module.characters).map((character) => [character.id, { name: character.name, role: character.role }]),
     ),
@@ -42,9 +43,9 @@ export function toModuleView(module: CareerModule): ModuleView {
 }
 
 /** Módulo jugable de la carrera, o `null` si la carrera no existe o aún no tiene módulo. */
-export function playableModule(careerId: string): CareerModule | null {
+export function playableModule(careerId: string, version?: number): CareerModule | null {
   try {
-    return moduleFor(careerId);
+    return moduleFor(careerId, version);
   } catch {
     return null;
   }

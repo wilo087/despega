@@ -2,7 +2,10 @@
 
 Simulador de inmersión de carreras para estudiantes de 15 a 18 años: una historia
 jugable donde viven una profesión antes de elegir qué estudiar. El piloto es
-**Ingeniería de Software — «Tu semana en PixelForge»**.
+**Ingeniería de Software — «Tu experiencia como Practicante Junior en la empresa PixelForge»**.
+El catálogo tiene 19 carreras. Software conserva el piloto original e Ingeniería
+Industrial agrega una experiencia 3D en EnvaPlast, con tres sesiones y arte original.
+Ver [arquitectura Industrial 3D](docs/architecture/industrial-3d.md).
 
 ## Estructura
 
@@ -55,6 +58,7 @@ pnpm infra:synth:dev && pnpm infra:synth:prd
 
 - Reglas para agentes y versiones: [`AGENTS.md`](AGENTS.md)
 - Documento funcional del cliente: [`docs/funtional.md`](docs/funtional.md)
+- Actualizaciones del cliente: [`docs/requirements/2026-10-30-actualizaciones-plataforma.md`](docs/requirements/2026-10-30-actualizaciones-plataforma.md)
 - Estado y pendientes: [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md)
 - Arquitectura: [`docs/architecture/`](docs/architecture/)
 - Decisiones: [`docs/decisions/`](docs/decisions/)

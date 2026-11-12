@@ -7,6 +7,10 @@
     "node": ">=24.11.0"
   },
   "scripts": {
+    "assets:build": "blender --background --python assets/3d/generate.py",
+    "assets:check": "node scripts/check-factory-assets.mjs",
+    "assets:space-check": "node scripts/check-factory-space.mjs",
+    "audit:factory-client": "node scripts/audit-factory-client.mjs",
     "dev": "pnpm local:setup && pnpm -r --parallel --filter @despega/web --filter @despega/admin dev",
     "dev:web": "pnpm local:setup && pnpm --filter @despega/web dev",
     "dev:admin": "pnpm local:setup && pnpm --filter @despega/admin dev",

@@ -3,6 +3,7 @@
 import { MessageSquareOff, Plus, Send, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useState } from 'react';
+import { GlossaryText } from '../glossary';
 import { PlayerLine, speakerName } from '../conversation';
 import type { InteractionProps } from './types';
 
@@ -41,7 +42,7 @@ export function MessageBuilderInteraction({ interaction, locked, outcome, onSubm
     <div className="grid gap-4">
       <div className={`rounded-xl border-2 ${interaction.channel === 'email' ? 'border-line bg-white' : 'border-accent/30 bg-accent-soft/30'} p-4`}>
         <p className="text-xs font-bold uppercase tracking-wider text-muted">
-          {interaction.channel === 'email' ? `Responder a ${recipient}` : `Mensaje para ${recipient}`} · {selected.length}/{interaction.maxBlocks} frases
+          {interaction.channel === 'email' ? `Responder a ${recipient}` : `Mensaje para ${recipient}`}
         </p>
         <div className="mt-2 min-h-16" aria-live="polite">
           {composed.length === 0 ? (
@@ -64,7 +65,7 @@ export function MessageBuilderInteraction({ interaction, locked, outcome, onSubm
                       className="flex items-start gap-2 rounded-lg bg-accent px-3 py-2 text-left text-sm font-medium text-white"
                       aria-label={`Quitar: ${block.text}`}
                     >
-                      <span>{block.text}</span>
+                      <span><GlossaryText text={block.text} interactive={false} /></span>
                       <X className="mt-0.5 size-3.5 shrink-0 opacity-80" aria-hidden />
                     </motion.button>
                   ) : null;
@@ -87,7 +88,7 @@ export function MessageBuilderInteraction({ interaction, locked, outcome, onSubm
               className="flex items-start gap-2 rounded-lg border-2 border-line bg-white px-3 py-2.5 text-left text-sm text-ink transition-colors hover:border-accent/60 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <Plus className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden />
-              <span>{block.text}</span>
+              <span><GlossaryText text={block.text} interactive={false} /></span>
             </button>
           ))}
         </div>

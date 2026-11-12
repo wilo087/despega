@@ -1,0 +1,366 @@
+[
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"gloves\":\"Greet\",\"wilfredo\":\"Idle\",\"yuleisy\":\"Idle\",\"altagracia\":\"Idle\"}",
+      "animation": "Idle",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "76",
+      "heading": "0",
+      "position": "{\"x\":-13,\"z\":12}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "0"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"gloves\":\"Idle\",\"altagracia\":\"Greet\",\"wilfredo\":\"Idle\",\"yuleisy\":\"Idle\"}",
+      "animation": "Idle",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "67",
+      "heading": "0",
+      "position": "{\"x\":-13,\"z\":-4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "1"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"altagracia\":\"Greet\",\"wilfredo\":\"Idle\",\"yuleisy\":\"Idle\",\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"gloves\":\"Idle\"}",
+      "animation": "Listen",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "95",
+      "heading": "0",
+      "position": "{\"x\":-13,\"z\":-4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "2"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"gloves\":\"Greet\",\"altagracia\":\"Idle\",\"wilfredo\":\"Idle\",\"yuleisy\":\"Idle\"}",
+      "animation": "Idle",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "49",
+      "heading": "0",
+      "position": "{\"x\":-13,\"z\":12}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "3"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"canteen\":\"Idle\",\"gloves\":\"Idle\",\"altagracia\":\"Idle\",\"wilfredo\":\"Point\",\"yuleisy\":\"Greet\",\"kevin\":\"Idle\"}",
+      "animation": "Idle",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "86",
+      "heading": "0",
+      "position": "{\"x\":0,\"z\":4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "4"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"canteen\":\"Idle\",\"gloves\":\"Idle\",\"wilfredo\":\"Idle\",\"yuleisy\":\"Greet\",\"kevin\":\"Idle\",\"altagracia\":\"Idle\"}",
+      "animation": "Idle",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "82",
+      "heading": "0",
+      "position": "{\"x\":0,\"z\":4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "5"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"canteen\":\"Idle\",\"gloves\":\"Idle\",\"altagracia\":\"Idle\",\"wilfredo\":\"Idle\",\"yuleisy\":\"Greet\",\"kevin\":\"Idle\"}",
+      "animation": "Listen",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "91",
+      "heading": "0",
+      "position": "{\"x\":0,\"z\":4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "6"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"gloves\":\"Idle\",\"altagracia\":\"Greet\",\"wilfredo\":\"Idle\",\"yuleisy\":\"Idle\"}",
+      "animation": "Listen",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "84",
+      "heading": "0",
+      "position": "{\"x\":-13,\"z\":-4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "7"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Idle\",\"operator-fill\":\"Idle\",\"operator-seal\":\"Idle\",\"operator-label\":\"Idle\",\"operator-pack\":\"Idle\",\"canteen\":\"Idle\",\"gloves\":\"Idle\",\"altagracia\":\"Idle\",\"wilfredo\":\"Idle\",\"yuleisy\":\"Greet\",\"kevin\":\"Idle\"}",
+      "animation": "React",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "75",
+      "heading": "0",
+      "position": "{\"x\":0,\"z\":4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "8"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Idle\",\"operator-fill\":\"Idle\",\"operator-seal\":\"Idle\",\"operator-label\":\"Idle\",\"operator-pack\":\"Idle\",\"gloves\":\"Greet\",\"wilfredo\":\"Idle\",\"altagracia\":\"Idle\",\"yuleisy\":\"Idle\"}",
+      "animation": "Idle",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "60",
+      "heading": "0",
+      "position": "{\"x\":-13,\"z\":12}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "9"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"canteen\":\"Idle\",\"gloves\":\"Idle\",\"altagracia\":\"Idle\",\"wilfredo\":\"Talk\",\"yuleisy\":\"Greet\",\"kevin\":\"Idle\"}",
+      "animation": "Listen",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "68",
+      "heading": "0",
+      "position": "{\"x\":0,\"z\":4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "10"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"gloves\":\"Idle\",\"altagracia\":\"Greet\",\"wilfredo\":\"Idle\",\"yuleisy\":\"Idle\"}",
+      "animation": "Idle",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "74",
+      "heading": "0",
+      "position": "{\"x\":-13,\"z\":-4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "11"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"wilfredo\":\"Idle\",\"kevin\":\"Idle\",\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"canteen\":\"Idle\",\"gloves\":\"Idle\",\"yuleisy\":\"Idle\"}",
+      "animation": "Listen",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "67",
+      "heading": "0",
+      "position": "{\"x\":11,\"z\":3}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "12"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"canteen\":\"Idle\",\"gloves\":\"Idle\",\"altagracia\":\"Idle\",\"wilfredo\":\"Idle\",\"yuleisy\":\"Greet\",\"kevin\":\"Idle\"}",
+      "animation": "Idle",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "74",
+      "heading": "0",
+      "position": "{\"x\":0,\"z\":4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "13"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"altagracia\":\"Greet\",\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"gloves\":\"Idle\",\"wilfredo\":\"Idle\",\"yuleisy\":\"Idle\"}",
+      "animation": "Idle",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "79",
+      "heading": "0",
+      "position": "{\"x\":-13,\"z\":-4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "14"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"canteen\":\"Idle\",\"gloves\":\"Idle\",\"altagracia\":\"Idle\",\"wilfredo\":\"Talk\",\"kevin\":\"Idle\",\"yuleisy\":\"Greet\"}",
+      "animation": "Listen",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "89",
+      "heading": "0",
+      "position": "{\"x\":0,\"z\":4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "15"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"canteen\":\"Idle\",\"gloves\":\"Idle\",\"wilfredo\":\"Idle\",\"kevin\":\"Idle\",\"yuleisy\":\"Idle\"}",
+      "animation": "Inspect",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "86",
+      "heading": "0",
+      "position": "{\"x\":11,\"z\":3}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "16"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"altagracia\":\"Greet\",\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"gloves\":\"Idle\",\"wilfredo\":\"Idle\",\"yuleisy\":\"Idle\"}",
+      "animation": "React",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "75",
+      "heading": "0",
+      "position": "{\"x\":-13,\"z\":-4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "17"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"gloves\":\"Greet\",\"altagracia\":\"Idle\",\"wilfredo\":\"Idle\",\"yuleisy\":\"Idle\"}",
+      "animation": "Idle",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "73",
+      "heading": "0",
+      "position": "{\"x\":-13,\"z\":12}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "18"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"canteen\":\"Idle\",\"gloves\":\"Idle\",\"altagracia\":\"Idle\",\"wilfredo\":\"Idle\",\"yuleisy\":\"Greet\",\"kevin\":\"Idle\"}",
+      "animation": "Idle",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "84",
+      "heading": "0",
+      "position": "{\"x\":0,\"z\":4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "19"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Idle\",\"operator-fill\":\"Idle\",\"operator-seal\":\"Idle\",\"operator-label\":\"Idle\",\"operator-pack\":\"Idle\",\"canteen\":\"Idle\",\"gloves\":\"Idle\",\"wilfredo\":\"Idle\",\"yuleisy\":\"Greet\",\"kevin\":\"Idle\",\"altagracia\":\"Idle\"}",
+      "animation": "Listen",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "68",
+      "heading": "0",
+      "position": "{\"x\":0,\"z\":4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "20"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"altagracia\":\"Idle\",\"wilfredo\":\"Idle\",\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"canteen\":\"Idle\",\"gloves\":\"Idle\",\"kevin\":\"Idle\"}",
+      "animation": "Idle",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "72",
+      "heading": "0",
+      "position": "{\"x\":0,\"z\":4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "21"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"gloves\":\"Idle\",\"altagracia\":\"Greet\",\"wilfredo\":\"Idle\"}",
+      "animation": "Listen",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "90",
+      "heading": "0",
+      "position": "{\"x\":-13,\"z\":-4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "22"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"wilfredo\":\"Talk\",\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"canteen\":\"Idle\",\"gloves\":\"Idle\",\"kevin\":\"Idle\",\"altagracia\":\"Idle\"}",
+      "animation": "Listen",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "67",
+      "heading": "0",
+      "position": "{\"x\":0,\"z\":4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "23"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"gloves\":\"Idle\",\"altagracia\":\"Greet\",\"wilfredo\":\"Idle\"}",
+      "animation": "Idle",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "84",
+      "heading": "0",
+      "position": "{\"x\":-13,\"z\":-4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "24"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"altagracia\":\"Greet\",\"wilfredo\":\"Idle\",\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"gloves\":\"Idle\"}",
+      "animation": "Listen",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "67",
+      "heading": "0",
+      "position": "{\"x\":-13,\"z\":-4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "25"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"gloves\":\"Idle\",\"altagracia\":\"Greet\",\"wilfredo\":\"Idle\"}",
+      "animation": "Idle",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "62",
+      "heading": "0",
+      "position": "{\"x\":-13,\"z\":-4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "26"
+  },
+  {
+    "canvas": {
+      "actorAnimations": "{\"operator-feed\":\"Work\",\"operator-fill\":\"Work\",\"operator-seal\":\"Work\",\"operator-label\":\"Work\",\"operator-pack\":\"Work\",\"gloves\":\"Idle\",\"altagracia\":\"Greet\",\"wilfredo\":\"Idle\"}",
+      "animation": "Idle",
+      "engine": "Babylon.js v9.35.0",
+      "frameRate": "63",
+      "heading": "0",
+      "position": "{\"x\":-13,\"z\":-4}"
+    },
+    "error": false,
+    "overflow": false,
+    "scene": "27"
+  }
+]

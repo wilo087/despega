@@ -4,6 +4,7 @@ import { ArrowRight, Lightbulb } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useState } from 'react';
 import { CountdownRing, RiskMeter, useCountdown } from '../countdown';
+import { GlossaryText } from '../glossary';
 import { OPTION_LETTERS, type InteractionProps } from './types';
 
 /** Diálogo con 2–3 opciones; con reloj visible cuando es una decisión con tiempo límite. */
@@ -64,7 +65,7 @@ export function DialogueInteraction({ interaction, active, locked, outcome, onSu
               <span className={`grid size-8 shrink-0 place-items-center rounded-lg text-sm font-bold ${chosen ? 'bg-accent text-white' : 'bg-mist text-ink-soft'}`}>
                 {OPTION_LETTERS[index]}
               </span>
-              <span className="flex-1">{option.label}</span>
+              <span className="flex-1"><GlossaryText text={option.label} interactive={false} /></span>
               {!locked && <ArrowRight className="size-4 shrink-0 opacity-0 transition-opacity group-hover:opacity-100" aria-hidden />}
             </motion.button>
           );

@@ -4,6 +4,7 @@ import { BellRing, Video } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { CharacterAvatar } from '@/components/characters/character-avatar';
+import { CallSound } from '../call-sound';
 import { NarrationLine, SkipButton, speakerName } from '../conversation';
 import type { ScreenProps } from './types';
 
@@ -31,6 +32,7 @@ export function NotificationScreen({ scene, module, reveal, interaction }: Scree
       <div className="m-auto grid w-full max-w-5xl items-center gap-10 px-4 py-8 sm:px-8 md:grid-cols-[1fr_auto] lg:py-10">
         <div className="grid gap-4">
           <p className="eyebrow">Sesión {scene.session.number} · {scene.session.title}</p>
+          {hasCall && <CallSound ringing={stage >= 2} />}
           {reveal.visibleLines.map((line, index) => (
             <p key={index} className="font-display text-2xl font-bold leading-snug text-ink sm:text-3xl">{line.text}</p>
           ))}

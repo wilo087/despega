@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowLeft, BookOpenText, ChevronRight, LayoutDashboard, Users } from 'lucide-react';
+import { ArrowLeft, BookOpenText, ChevronRight, LayoutDashboard, Users, ContactRound } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Brand } from '@/components/brand';
@@ -12,6 +12,7 @@ type Crumb = { readonly label: string; readonly href?: string };
 const SECTIONS = [
   { href: '/', label: 'Panel', icon: LayoutDashboard },
   { href: '/estudiantes', label: 'Estudiantes', icon: Users },
+  { href: '/crm', label: 'CRM', icon: ContactRound },
   { href: '/modulos', label: 'Módulos', icon: BookOpenText },
 ] as const;
 
@@ -20,14 +21,14 @@ function inSection(pathname: string, href: string): boolean {
 }
 
 /** Navegación lateral (escritorio): secciones y acceso directo al guion de cada módulo. */
-export function SideNav({ modules }: { modules: readonly NavModule[] }) {
+export function SideNav({ modules, showCrm = false }: { modules: readonly NavModule[]; showCrm?: boolean }) {
   const pathname = usePathname();
   const moduleOpen = modules.some((item) => pathname === `/modulos/${item.id}`);
 
   return (
     <nav aria-label="Secciones del backoffice" className="grid gap-6">
       <ul className="grid gap-1">
-        {SECTIONS.map((item) => {
+        {SECTIONS.filter(item => item.href !== '/crm' || showCrm).map((item) => {
           const active = item.href === '/modulos' ? inSection(pathname, item.href) && !moduleOpen : inSection(pathname, item.href);
           return (
             <li key={item.href}>
@@ -58,7 +59,7 @@ export function SideNav({ modules }: { modules: readonly NavModule[] }) {
 }
 
 /** Pestañas inferiores (móvil): las tres secciones siempre a un toque. */
-export function TabBar() {
+export function TabBar({ showCrm = false }: { showCrm?: boolean }) {
   const pathname = usePathname();
   return (
     <nav
@@ -66,7 +67,7 @@ export function TabBar() {
       className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-surface/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-md lg:hidden"
     >
       <ul className="mx-auto flex max-w-md">
-        {SECTIONS.map((item) => (
+        {SECTIONS.filter(item => item.href !== '/crm' || showCrm).map((item) => (
           <li key={item.href} className="flex flex-1">
             <Link href={item.href} className="tab-item" aria-current={inSection(pathname, item.href) ? 'page' : undefined}>
               <item.icon className="size-5" aria-hidden />
@@ -81,6 +82,7 @@ export function TabBar() {
 
 function crumbsFor(pathname: string, moduleTitles: Readonly<Record<string, string>>): Crumb[] {
   const [section, detail] = pathname.split('/').filter(Boolean).map(decodeURIComponent);
+  if (section === 'crm') return detail ? [{ label: 'CRM', href: '/crm' }, { label: 'Contacto' }] : [{ label: 'CRM · Encuesta' }];
   if (section === 'estudiantes') {
     return detail ? [{ label: 'Estudiantes', href: '/estudiantes' }, { label: 'Ficha del estudiante' }] : [{ label: 'Estudiantes' }];
   }

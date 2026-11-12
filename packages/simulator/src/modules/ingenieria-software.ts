@@ -1,7 +1,7 @@
 import type { CareerModule } from '../types.ts';
 
 /**
- * Módulo piloto: Ingeniería de Software — «Tu semana en PixelForge».
+ * Módulo piloto: Ingeniería de Software — «Tu experiencia como Practicante Junior en la empresa PixelForge».
  *
  * Fuente: docs/funtional.md (v4). Los puntajes de afinidad y las penalizaciones de
  * desempeño son los del documento. Los valores que el documento no define (subidas de
@@ -12,11 +12,27 @@ import type { CareerModule } from '../types.ts';
 export const ingenieriaSoftware: CareerModule = {
   id: 'ingenieria-software',
   careerId: 'ingenieria-software',
-  version: 2,
+  version: 3,
   title: 'Ingeniería de Software',
-  tagline: 'Tu semana en PixelForge',
+  tagline: 'Tu experiencia como Practicante Junior en la empresa PixelForge',
   company: 'PixelForge',
   playerRole: 'Practicante junior',
+  glossary: [
+    { term: 'bug', aliases: ['bugs'], meaning: 'Error en un programa que hace que algo funcione de una forma inesperada.' },
+    { term: 'Product Manager', aliases: ['PM'], meaning: 'Persona que coordina las necesidades del cliente, las prioridades del producto y el trabajo del equipo.' },
+    { term: 'feedback', meaning: 'Comentarios sobre un trabajo para reconocer lo que funciona y ayudar a mejorarlo.' },
+    { term: 'producción', meaning: 'La versión del sistema que utilizan los clientes reales.' },
+    { term: 'ticket', meaning: 'Registro de un problema o una solicitud que el equipo debe atender.' },
+    { term: 'dashboard', meaning: 'Panel que reúne indicadores y muestra qué está pasando en el sistema.' },
+    { term: 'retro', meaning: 'Reunión en la que el equipo revisa lo ocurrido y acuerda cómo mejorar su forma de trabajar.' },
+    { term: 'pruebas automáticas', meaning: 'Comprobaciones que ejecuta un programa para detectar si algo dejó de funcionar.' },
+    { term: 'lanzamiento', meaning: 'Momento en que una versión del producto se pone a disposición de sus usuarios.' },
+    { term: 'junior', meaning: 'Persona que está comenzando su experiencia profesional y aprende con acompañamiento del equipo.' },
+    { term: 'developer', meaning: 'Profesional que crea, prueba y mantiene programas informáticos; significa desarrollador o desarrolladora.' },
+    { term: 'senior', meaning: 'Profesional con experiencia que resuelve problemas complejos y acompaña a otras personas del equipo.' },
+    { term: 'CTO', meaning: 'Persona que dirige la estrategia tecnológica de una organización.' },
+    { term: 'freelance', meaning: 'Profesional independiente que trabaja por proyectos para uno o varios clientes.' },
+  ],
   initialPerformance: 50,
   initialFlags: {
     complaints: 5,
@@ -144,7 +160,7 @@ export const ingenieriaSoftware: CareerModule = {
         },
         {
           id: '1.3',
-          title: 'Los reportes',
+          title: 'Los comentarios de clientes',
           clock: '9:10 a. m.',
           screen: 'inbox',
           participants: ['marisol'],
@@ -153,87 +169,19 @@ export const ingenieriaSoftware: CareerModule = {
             {
               speaker: 'marisol',
               mood: 'serious',
-              text: 'Te reenvié 4 reportes de soporte. Agrúpalos según la conexión de cada usuario: puede que ahí esté la pista.',
+              text: 'Te reenvié los comentarios de 4 clientes. Lee qué le pasó a cada persona y busca qué tienen en común antes de dar tu diagnóstico.',
             },
           ],
+          reports: [
+            { id: 'wifi-publico', from: 'Valentina R.', title: 'Mi pedido no se confirma', body: 'Estaba conectada al wifi público de un café. Toqué «Confirmar pedido» y se quedó pensando… nunca confirmó.' },
+            { id: 'fibra', from: 'Sofía M.', title: 'Pude comprar sin problemas', body: 'Hice la compra desde casa, con fibra óptica. Toqué «Confirmar pedido» y el pedido se confirmó al instante.' },
+            { id: 'datos-debiles', from: 'Mateo G.', title: 'Error al confirmar', body: 'Usaba datos móviles y tenía una rayita de señal. Me salió un error después de tocar el botón.' },
+            { id: 'mala-senal', from: 'Daniel P.', title: 'El botón no responde', body: 'Estaba en una zona con mala señal. Le di dos veces al botón y no pasó nada.' },
+          ],
           interaction: {
-            kind: 'classification',
-            prompt: 'Arrastra o toca cada reporte y ubícalo en su categoría antes de que se acabe el tiempo.',
-            timeLimitSeconds: 45,
-            categories: [
-              { id: 'lenta', label: 'Conexión lenta', emoji: '🐢' },
-              { id: 'rapida', label: 'Conexión rápida', emoji: '⚡' },
-            ],
-            items: [
-              {
-                id: 'wifi-publico',
-                from: 'Valentina R.',
-                title: 'Wifi público de un café',
-                body: '«Toqué “Confirmar pedido” y se quedó pensando… nunca confirmó.»',
-                correctCategoryId: 'lenta',
-              },
-              {
-                id: 'fibra',
-                from: 'Sofía M.',
-                title: 'Fibra óptica en casa',
-                body: '«A mí me funcionó sin problemas. Pedido confirmado al instante.»',
-                correctCategoryId: 'rapida',
-              },
-              {
-                id: 'datos-debiles',
-                from: 'Mateo G.',
-                title: 'Datos móviles débiles',
-                body: '«Tenía una rayita de señal. Me salió un error después de tocar el botón.»',
-                correctCategoryId: 'lenta',
-              },
-              {
-                id: 'mala-senal',
-                from: 'Daniel P.',
-                title: 'Zona con mala señal',
-                body: '«Le di dos veces al botón y no pasó nada.»',
-                correctCategoryId: 'lenta',
-              },
-            ],
-            tiers: [
-              {
-                minCorrect: 3,
-                outcome: {
-                  id: 'patron-claro',
-                  label: '3 o más reportes bien clasificados',
-                  performance: 5,
-                  affinity: { analytical: 6, detail: 2 },
-                  flags: { s1Clue: 'clear' },
-                  reactions: [
-                    { speaker: 'marisol', mood: 'happy', text: '¡Ahí está el patrón! Los que fallan tienen conexión lenta. Los de buena señal, no.' },
-                  ],
-                },
-              },
-              {
-                minCorrect: 1,
-                outcome: {
-                  id: 'patron-parcial',
-                  label: '1–2 reportes bien clasificados',
-                  performance: 1,
-                  affinity: { detail: 2 },
-                  flags: { s1Clue: 'partial' },
-                  reactions: [
-                    { speaker: 'marisol', mood: 'neutral', text: 'Algo tiene que ver con la conexión, pero todavía no está del todo claro.' },
-                  ],
-                },
-              },
-              {
-                minCorrect: 0,
-                outcome: {
-                  id: 'sin-patron',
-                  label: 'Ningún reporte bien clasificado a tiempo',
-                  performance: -2,
-                  flags: { s1Clue: 'none' },
-                  reactions: [
-                    { speaker: 'marisol', mood: 'concerned', text: 'Con esto no aparece ningún patrón. Seguimos sin pista; toca avanzar igual.' },
-                  ],
-                },
-              },
-            ],
+            kind: 'none',
+            continueLabel: 'Ya leí los comentarios: dar mi diagnóstico',
+            outcome: { id: 'reportes-revisados', label: 'Revisar los comentarios antes del diagnóstico', flags: { s1Clue: 'reviewed' } },
           },
         },
         {
@@ -249,6 +197,10 @@ export const ingenieriaSoftware: CareerModule = {
               mood: 'serious',
               text: {
                 variants: [
+                  {
+                    when: { flag: 's1Clue', equals: 'reviewed' },
+                    text: 'Ya tienes los comentarios de los clientes. Piensa en qué cambia entre quienes pudieron comprar y quienes no.',
+                  },
                   {
                     when: { flag: 's1Clue', equals: 'clear' },
                     text: 'Con lo que encontraste, todo apunta a la conexión lenta: los usuarios con buena señal no reportan nada.',
@@ -304,7 +256,7 @@ export const ingenieriaSoftware: CareerModule = {
                     {
                       speaker: 'marisol',
                       mood: 'concerned',
-                      text: 'Mmm… el diseño no ha cambiado en semanas y antes funcionaba. No creo que sea eso.',
+                      text: 'Mmm… el diseño sigue siendo el mismo y antes funcionaba. No creo que sea eso.',
                     },
                   ],
                 },
@@ -362,7 +314,7 @@ export const ingenieriaSoftware: CareerModule = {
           },
           interaction: {
             kind: 'message-builder',
-            prompt: 'Arma tu respuesta combinando 2 o 3 frases del banco.',
+            prompt: 'Arma tu respuesta.',
             channel: 'email',
             recipient: 'andres',
             minBlocks: 2,
@@ -458,7 +410,7 @@ export const ingenieriaSoftware: CareerModule = {
           id: '1.7',
           title: 'Resumen de sesión',
           screen: 'summary',
-          interaction: { kind: 'summary', scope: 'session', heading: 'Tu semana en PixelForge — Sesión 1' },
+          interaction: { kind: 'summary', scope: 'session', heading: 'Tu experiencia como Practicante Junior en la empresa PixelForge — Sesión 1' },
         },
       ],
     },
@@ -734,12 +686,12 @@ export const ingenieriaSoftware: CareerModule = {
             {
               speaker: 'marisol',
               mood: 'neutral',
-              text: 'Llegaron 4 tareas nuevas, pero esta semana solo hay espacio para 3. Tú decides cuáles entran al tablero.',
+              text: 'Llegaron 4 tareas nuevas, pero en esta experiencia solo hay espacio para 3. Tú decides cuáles entran al tablero.',
             },
           ],
           interaction: {
             kind: 'prioritization',
-            prompt: 'Arrastra o toca 3 tareas para ubicarlas en el tablero de la semana.',
+            prompt: 'Arrastra o toca 3 tareas para ubicarlas en el tablero de esta experiencia.',
             slots: 3,
             discardedFlag: 's2Discarded',
             tasks: [
@@ -774,11 +726,11 @@ export const ingenieriaSoftware: CareerModule = {
               affinity: { structure: 2 },
               narration: {
                 variants: [
-                  { when: { flag: 's2Discarded', equals: 'pruebas' }, text: 'Las pruebas automáticas quedan fuera del tablero esta semana.' },
-                  { when: { flag: 's2Discarded', equals: 'documentacion' }, text: 'La documentación queda fuera del tablero esta semana.' },
-                  { when: { flag: 's2Discarded', equals: 'ticket' }, text: 'El ticket del cliente principal queda fuera del tablero esta semana.' },
+                  { when: { flag: 's2Discarded', equals: 'pruebas' }, text: 'Las pruebas automáticas quedan fuera del tablero en esta experiencia.' },
+                  { when: { flag: 's2Discarded', equals: 'documentacion' }, text: 'La documentación queda fuera del tablero en esta experiencia.' },
+                  { when: { flag: 's2Discarded', equals: 'ticket' }, text: 'El ticket del cliente principal queda fuera del tablero en esta experiencia.' },
                 ],
-                fallback: 'La mejora de la pantalla de confirmación queda fuera del tablero esta semana.',
+                fallback: 'La mejora de la pantalla de confirmación queda fuera del tablero en esta experiencia.',
               },
               reactions: [
                 { speaker: 'marisol', mood: 'neutral', text: 'Listo. Lo que queda fuera no desaparece: alguien lo va a sentir. Así es priorizar.' },
@@ -813,7 +765,7 @@ export const ingenieriaSoftware: CareerModule = {
           id: '2.6',
           title: 'Resumen de sesión',
           screen: 'summary',
-          interaction: { kind: 'summary', scope: 'session', heading: 'Tu semana en PixelForge — Sesión 2' },
+          interaction: { kind: 'summary', scope: 'session', heading: 'Tu experiencia como Practicante Junior en la empresa PixelForge — Sesión 2' },
         },
       ],
     },
@@ -825,7 +777,7 @@ export const ingenieriaSoftware: CareerModule = {
       id: 's3',
       number: 3,
       title: 'Día de lanzamiento',
-      synopsis: 'Hay una ventana de 28 minutos para lanzar. Todo lo que decidiste esta semana cuenta.',
+      synopsis: 'Hay una ventana de 28 minutos para lanzar. Todo lo que decidiste en esta experiencia cuenta.',
       estimatedMinutes: 30,
       scenes: [
         {
@@ -874,7 +826,7 @@ export const ingenieriaSoftware: CareerModule = {
             {
               speaker: 'narrator',
               when: { flag: 's2Discarded', equals: 'diseno' },
-              text: 'La pantalla de confirmación sigue igual y algunos usuarios todavía no la entienden. Queda para la próxima semana.',
+              text: 'La pantalla de confirmación sigue igual y algunos usuarios todavía no la entienden. Queda para una próxima experiencia.',
             },
             { speaker: 'marisol', mood: 'serious', text: 'Tenemos 4 errores y 28 minutos. Vamos por partes, {nombre}.' },
           ],
@@ -1016,7 +968,7 @@ export const ingenieriaSoftware: CareerModule = {
               },
               {
                 id: 'esperar',
-                label: 'Esperar y lanzar la próxima semana',
+                label: 'Esperar y lanzar en una próxima experiencia',
                 description: 'Nadie ve la nueva versión hasta que esté pulida.',
                 results: [
                   {
@@ -1094,7 +1046,7 @@ export const ingenieriaSoftware: CareerModule = {
           participants: ['marisol'],
           hud: { launchWindow: true },
           lines: [
-            { speaker: 'marisol', mood: 'happy', text: 'Ya pasó lo más duro. Antes de cerrar la semana, hagamos una retro rápida.' },
+            { speaker: 'marisol', mood: 'happy', text: 'Ya pasó lo más duro. Antes de cerrar la experiencia, hagamos una retro rápida.' },
             { speaker: 'marisol', mood: 'neutral', text: '¿Qué te llevas de estos días, {nombre}?' },
           ],
           interaction: {
@@ -1146,22 +1098,22 @@ export const ingenieriaSoftware: CareerModule = {
           interaction: {
             kind: 'summary',
             scope: 'module',
-            heading: 'Tu semana en PixelForge',
+            heading: 'Tu experiencia como Practicante Junior en la empresa PixelForge',
             continueLabel: 'Ver el camino desde acá',
             closing: [
               {
                 when: { performanceAtLeast: 75 },
                 speaker: 'marisol',
-                text: 'Tuviste una semana muy sólida, {nombre}. Investigaste antes de actuar, cuidaste al equipo y tomaste decisiones difíciles con criterio. Eso no es suerte: es una forma de trabajar.',
+                text: 'Tuviste una experiencia muy sólida, {nombre}. Investigaste antes de actuar, cuidaste al equipo y tomaste decisiones difíciles con criterio. Eso no es suerte: es una forma de trabajar.',
               },
               {
                 when: { performanceAtLeast: 55 },
                 speaker: 'marisol',
-                text: 'Fue una semana con aciertos claros y algunos tropiezos, como la de cualquiera que empieza. Lo importante: cuando algo salió mal, lo viste y seguiste adelante. Eso se entrena.',
+                text: 'Fue una experiencia con aciertos claros y algunos tropiezos, como la de cualquiera que empieza. Lo importante: cuando algo salió mal, lo viste y seguiste adelante. Eso se entrena.',
               },
               {
                 speaker: 'marisol',
-                text: 'Fue una semana difícil, y está bien decirlo. Varias decisiones complicaron las cosas, pero llegaste hasta el final y ahora sabes cómo se siente estar en medio de un incidente real. Ese aprendizaje vale mucho.',
+                text: 'Fue una experiencia difícil, y está bien decirlo. Varias decisiones complicaron las cosas, pero llegaste hasta el final y ahora sabes cómo se siente estar en medio de un incidente real. Ese aprendizaje vale mucho.',
               },
             ],
           },
@@ -1175,7 +1127,7 @@ export const ingenieriaSoftware: CareerModule = {
             {
               speaker: 'marisol',
               mood: 'happy',
-              text: 'Lo que viviste esta semana es el punto de partida, no el destino. Así se ve el camino desde acá.',
+              text: 'Lo que viviste en esta experiencia es el punto de partida, no el destino. Así se ve el camino desde acá.',
             },
           ],
           interaction: {
@@ -1186,7 +1138,7 @@ export const ingenieriaSoftware: CareerModule = {
                 id: 'junior',
                 period: 'Año 1',
                 title: 'Practicante / Junior',
-                narration: 'Aprendo resolviendo problemas reales, con acompañamiento cercano. Justo lo que viví esta semana.',
+                narration: 'Aprendo resolviendo problemas reales, con acompañamiento cercano. Justo lo que viví en esta experiencia.',
               },
               {
                 id: 'pleno',
@@ -1229,7 +1181,7 @@ export const ingenieriaSoftware: CareerModule = {
               },
             ],
             alignmentNote:
-              'Tu forma de decidir esta semana se parece a este camino. No es una predicción ni una recomendación cerrada: es una pista.',
+              'Tu forma de decidir en esta experiencia se parece a este camino. No es una predicción ni una recomendación cerrada: es una pista.',
           },
         },
       ],

@@ -1,5 +1,7 @@
 import {
   AFFINITY_AXES,
+  factoryAffinity,
+  type AffinityAxis,
   buildAffinityProfile,
   cumulativeAffinityMaximum,
   emptyAffinity,
@@ -45,11 +47,13 @@ export async function careerOverview(
   } while (cursor && items.length < ceiling);
 
   const completed = items.filter((item) => item.status === 'completed');
-  const maximum = cumulativeAffinityMaximum(module, module.sessions.length - 1);
-  const affinitySum = emptyAffinity();
+  const axes: readonly AffinityAxis[] = module.presentation === 'factory' ? [...AFFINITY_AXES, 'numeric'] : AFFINITY_AXES;
+  const affinitySum = module.presentation === 'factory' ? {...emptyAffinity(),numeric:0} : emptyAffinity();
   for (const item of completed) {
-    const profile = buildAffinityProfile(item.affinity, maximum);
-    for (const axis of AFFINITY_AXES) affinitySum[axis] += profile.normalized[axis];
+    const playedModule = moduleFor(careerId, item.moduleVersion);
+    const maximum = cumulativeAffinityMaximum(playedModule, playedModule.sessions.length - 1);
+    const profile = playedModule.presentation === 'factory' ? factoryAffinity({affinity:item.affinity}) : buildAffinityProfile(item.affinity, maximum);
+    for (const axis of axes) affinitySum[axis] = (affinitySum[axis] ?? 0) + (profile.normalized[axis] ?? 0);
   }
 
   return {
@@ -66,7 +70,7 @@ export async function careerOverview(
     averagePerformanceCompleted: average(completed.map((item) => item.performance)),
     averageAffinityCompleted: completed.length === 0
       ? null
-      : Object.fromEntries(AFFINITY_AXES.map((axis) => [axis, Math.round(affinitySum[axis] / completed.length)])) as AffinityVector,
+      : Object.fromEntries(axes.map((axis) => [axis, Math.round((affinitySum[axis] ?? 0) / completed.length)])) as AffinityVector,
     recent: items.slice(0, options.recent ?? 10),
   };
 }

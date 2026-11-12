@@ -1,0 +1,74 @@
+{
+  "date": "2026-11-12",
+  "scope": "local; no deployment",
+  "tests": {
+    "total": 121,
+    "simulator": 82,
+    "data": 11,
+    "auth": 11,
+    "web": 4,
+    "admin": 1,
+    "infra": 12,
+    "fail": 0
+  },
+  "typecheck": "pass",
+  "lint": "pass",
+  "buildWeb": "pass",
+  "buildAdmin": "pass",
+  "assetBuild": "Blender 5.2.3 LTS",
+  "assets": {
+    "glb": 27,
+    "portraits": 2,
+    "triangles": 77668,
+    "files": 29,
+    "rawBytes": 5613223,
+    "gzipBytes": 1048450
+  },
+  "spatial": {
+    "boundsChecked": 41,
+    "directionsChecked": 16,
+    "animationEnvelopesChecked": 80,
+    "maximumWalkRadius": 0.5990246730652206,
+    "maximumGestureRadius": 0.7697554578405833,
+    "playerRadius": 0.65,
+    "actorRadius": 0.85
+  },
+  "client": {
+    "files": 199,
+    "gzipBytes": 1656350,
+    "privateNarrativeChecks": 19,
+    "serverBabylonDependencyReferences": 0
+  },
+  "browser": {
+    "desktop": {
+      "width": 1280,
+      "height": 720,
+      "scenes": 28
+    },
+    "mobileEmulation": {
+      "width": 390,
+      "height": 844,
+      "scenes": 28
+    },
+    "tabletViewport": {
+      "width": 820,
+      "height": 1180
+    },
+    "horizontalOverflow": 0,
+    "visibleErrors": 0,
+    "tutorial": [
+      "complete desktop",
+      "reload at interact",
+      "complete mobile",
+      "pause/resume",
+      "skip",
+      "task and production freeze",
+      "real attempt recovery"
+    ]
+  },
+  "removedFixtureRouteStatus": 404,
+  "physicalDevices": "not executed",
+  "studentUat": "not executed",
+  "safari": "not executed",
+  "deployment": "not requested"
+}

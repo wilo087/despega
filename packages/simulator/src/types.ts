@@ -3,14 +3,14 @@
  *
  * Un módulo de carrera es data declarativa: sesiones, escenas, interacciones y
  * resultados. El motor (`engine.ts`) no conoce la historia de ningún módulo; solo
- * interpreta estas estructuras. Así los 14 módulos previstos reutilizan la misma
+ * interpreta estas estructuras. Así los módulos de carrera reutilizan la misma
  * mecánica y cambian únicamente su escenario profesional.
  */
 
 export const AFFINITY_AXES = ['analytical', 'communication', 'detail', 'pressure', 'structure'] as const;
 
-export type AffinityAxis = (typeof AFFINITY_AXES)[number];
-export type AffinityVector = Record<AffinityAxis, number>;
+export type AffinityAxis = (typeof AFFINITY_AXES)[number] | 'numeric';
+export type AffinityVector = Record<(typeof AFFINITY_AXES)[number], number> & { numeric?: number };
 export type AffinityDelta = Partial<AffinityVector>;
 
 export type FlagValue = string | number | boolean;
@@ -56,6 +56,7 @@ export type Outcome = {
 };
 
 export type ScreenKind =
+  | 'factory'
   | 'notification'
   | 'video-call'
   | 'chat'
@@ -253,6 +254,7 @@ export type Interaction =
 export type InteractionKind = Interaction['kind'];
 
 export type Scene = {
+  readonly factory?: import('./factory/types.ts').FactoryTask;
   /** Identificador estable del guión, p. ej. `1.3`. */
   readonly id: string;
   readonly title: string;
@@ -266,12 +268,17 @@ export type Scene = {
   /** Notificación push; `caller` es el personaje que llama enseguida (videollamada entrante). */
   readonly notification?: { readonly app: string; readonly title: string; readonly body: Text; readonly caller?: string };
   readonly email?: { readonly from: string; readonly subject: string; readonly body: Text; readonly signature?: string };
+  /** Comentarios de clientes para investigar sin mostrar categorías ni pistas. */
+  readonly reports?: readonly CustomerReport[];
   /** Elemento visual de ambiente, p. ej. el gráfico de quejas del cliffhanger 2.5. */
   readonly visual?: SceneVisual;
   readonly interaction: Interaction;
 };
 
 export type SceneVisual = 'complaints-chart';
+
+export type CustomerReport = { readonly id: string; readonly from: string; readonly title: string; readonly body: string };
+export type GlossaryEntry = { readonly term: string; readonly meaning: string; readonly aliases?: readonly string[] };
 
 export type SessionDefinition = {
   readonly id: string;
@@ -290,6 +297,7 @@ export type CharacterDefinition = {
 };
 
 export type CareerModule = {
+  readonly presentation?: 'factory';
   readonly id: string;
   /** Carrera a la que pertenecen el desempeño y el perfil de afinidad. */
   readonly careerId: string;
@@ -299,6 +307,7 @@ export type CareerModule = {
   readonly tagline: string;
   readonly company: string;
   readonly playerRole: string;
+  readonly glossary?: readonly GlossaryEntry[];
   readonly initialPerformance: number;
   readonly initialFlags: Flags;
   readonly characters: Readonly<Record<string, CharacterDefinition>>;
@@ -310,6 +319,7 @@ export type CareerModule = {
 /* ------------------------------------------------------------------ */
 
 export type SceneResponse =
+  | { readonly kind: 'factory'; readonly command: import('./factory/types.ts').FactoryCommand }
   | { readonly kind: 'continue' }
   | { readonly kind: 'dialogue'; readonly optionId: string }
   /** Se acabó el tiempo de una decisión con tiempo límite sin elegir. */
@@ -351,6 +361,7 @@ export type LogEntry = {
 };
 
 export type SimulationState = {
+  factory?: import('./factory/types.ts').FactoryState;
   schemaVersion: 1;
   moduleId: string;
   moduleVersion: number;
@@ -484,6 +495,7 @@ export type HudState = {
 
 /** Escena resuelta para el cliente: textos finales y sin claves de respuesta. */
 export type PublicScene = {
+  readonly factory?: import('./factory/types.ts').PublicFactoryWorld;
   readonly id: string;
   readonly title: string;
   readonly clock?: string;
@@ -493,6 +505,7 @@ export type PublicScene = {
   readonly lines: readonly ResolvedLine[];
   readonly notification?: { readonly app: string; readonly title: string; readonly body: string; readonly caller?: string };
   readonly email?: { readonly from: string; readonly subject: string; readonly body: string; readonly signature?: string };
+  readonly reports?: readonly CustomerReport[];
   readonly visual?: SceneVisual;
   readonly session: { readonly id: string; readonly number: number; readonly title: string };
   readonly sceneNumber: number;

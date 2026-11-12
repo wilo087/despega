@@ -1,4 +1,4 @@
-import type { AffinityProfile, AppliedOutcome, PublicScene, SessionStatus, SimulationErrorCode } from '@despega/simulator';
+import type { AffinityProfile, AppliedOutcome, GlossaryEntry, PublicScene, SessionStatus, SimulationErrorCode } from '@despega/simulator';
 
 /** Progreso del estudiante en una carrera, tal como lo necesita la interfaz. */
 export type ProgressView = {
@@ -28,6 +28,7 @@ export type ModuleView = {
   readonly tagline: string;
   readonly company: string;
   readonly playerRole: string;
+  readonly glossary?: readonly GlossaryEntry[];
   readonly characters: Readonly<Record<string, { readonly name: string; readonly role: string }>>;
 };
 

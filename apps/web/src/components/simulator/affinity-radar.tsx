@@ -1,4 +1,5 @@
-import { AFFINITY_AXES, AFFINITY_LABELS, AFFINITY_SHORT_LABELS, type AffinityAxis, type AffinityVector } from '@despega/simulator';
+import { FACTORY_AFFINITY_LABELS } from '@despega/simulator/factory-world';
+import { AFFINITY_AXES, AFFINITY_LABELS, AFFINITY_SHORT_LABELS, type AffinityAxis, type AffinityVector } from '@despega/simulator/public';
 
 /**
  * Radar de afinidad (5 ejes, serie única). Sigue la guía de visualización del
@@ -34,6 +35,10 @@ export function AffinityRadar({
   /** Ejes sin oportunidades todavía (p. ej. estructura tras la sesión 1). */
   unavailable?: readonly AffinityAxis[];
 }) {
+  if (values.numeric !== undefined) {
+    const axes=['numeric','analytical','communication','detail','pressure'] as const;
+    return <svg viewBox="0 0 440 330" width={size} className={`h-auto max-w-full ${className}`} role="img" aria-label="Perfil Industrial: cinco dimensiones unipolares. La preferencia creativa o estructurada se muestra aparte."><RadarGrid center={RADAR_VIEW.center} radius={RADAR_VIEW.radius}/><polygon points={axes.map((axis,i)=>radarPoint(i,clampRatio(values[axis]??0),RADAR_VIEW.center,RADAR_VIEW.radius).join(',')).join(' ')} className="fill-accent stroke-accent" fillOpacity={.12} strokeWidth={2}/>{axes.map((axis,i)=>{const [x,y]=radarPoint(i,1.28,RADAR_VIEW.center,RADAR_VIEW.radius);return <text key={axis} x={x} y={y} textAnchor={Math.abs(x-220)<8?'middle':x>220?'start':'end'} className="fill-ink" fontSize={12}><tspan x={x} fontWeight={700}>{axis==='analytical'?'Problemas':AFFINITY_SHORT_LABELS[axis]}</tspan><tspan x={x} dy={16}>{values[axis]??0}</tspan></text>;})}</svg>;
+  }
   const description = AFFINITY_AXES.map((axis) => `${AFFINITY_LABELS[axis]}: ${unavailable.includes(axis) ? 'sin datos aún' : `${values[axis]} de 100`}`).join('; ');
 
   return (
@@ -109,6 +114,7 @@ export function AffinityBars({
   /** Etiquetas cortas para paneles angostos. */
   compact?: boolean;
 }) {
+  if (values.numeric !== undefined) return <div className="grid gap-4">{(['numeric','analytical','communication','detail','pressure'] as const).map(axis=><div key={axis}><div className="flex justify-between text-sm"><span>{FACTORY_AFFINITY_LABELS[axis]}</span><strong>{values[axis]??0}/100</strong></div><meter className="h-2 w-full accent-good" min={0} max={100} value={values[axis]??0} aria-label={FACTORY_AFFINITY_LABELS[axis]}/></div>)}<div className="flex justify-between text-sm"><span>Creativo</span><strong>{values.structure>0?'+':''}{values.structure} / ±11</strong><span>Estructurado</span></div><div className="relative h-2 rounded-full bg-mist" role="img" aria-label={`Preferencia entre creativo y estructurado: ${values.structure}, en una escala de menos once a más once`}><span className="absolute left-1/2 h-2 border-l border-line-strong"/><i className="absolute -top-1 h-4 w-1 -translate-x-1/2 rounded-full bg-accent" style={{left:`${(values.structure+11)/22*100}%`}}/></div></div>;
   return (
     <ul className={`grid ${compact ? 'gap-2.5' : 'gap-3'}`}>
       {AFFINITY_AXES.map((axis) => {

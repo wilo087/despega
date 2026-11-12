@@ -91,7 +91,7 @@ export default async function ModuleScriptPage({ params }: PageProps<'/modulos/[
                           <span className="font-display text-[0.9375rem] font-bold text-ink">{scene.title}</span>
                           <span className="flex flex-wrap gap-1.5">
                             <Chip size="sm" variant="soft"><Chip.Label>{SCREEN_LABELS[scene.screen]}</Chip.Label></Chip>
-                            <Chip size="sm" color="accent" variant="soft"><Chip.Label>{interactionLabel(scene.interaction)}</Chip.Label></Chip>
+                            <Chip size="sm" color="accent" variant="soft"><Chip.Label>{scene.factory ? `${scene.factory.kind}${scene.factory.timeLimit ? ` · ${scene.factory.timeLimit} s` : ''}` : interactionLabel(scene.interaction)}</Chip.Label></Chip>
                           </span>
                         </span>
                         <Accordion.Indicator />
@@ -117,6 +117,7 @@ function SceneDetail({ scene, names }: { scene: Scene; names: Record<string, str
   const outcomes = outcomeLines(scene);
   return (
     <div className="grid gap-5 text-sm">
+      {scene.factory && <section className="grid gap-3 rounded-xl border border-line bg-surface-secondary p-4"><p><strong>Zona:</strong> {scene.factory.zone} · <strong>Habilidades:</strong> {scene.factory.skills?.join(', ')||'No evaluada'}</p>{scene.factory.method&&<p>Elección de método bipolar: seguir el procedimiento o usar criterio propio. Ninguna opción resta desempeño.</p>}{[...(scene.factory.choices??[]),...(scene.factory.cards??[])].map(c=><p key={c.id}>{c.label}{c.cost===undefined?'':` · $${c.cost}`}</p>)}{scene.factory.answers&&<details><summary>Rúbrica de causas</summary><pre className="overflow-auto text-xs">{JSON.stringify(scene.factory.answers,null,2)}</pre></details>}</section>}
       {scene.clock && <p className="text-muted-ink">Hora en la historia: <strong className="text-ink">{scene.clock}</strong></p>}
       {(scene.lines?.length || scene.notification || scene.email) && (
         <div className="grid gap-2">
@@ -166,6 +167,18 @@ function SceneDetail({ scene, names }: { scene: Scene; names: Record<string, str
             ))}
           </ul>
         </div>
+      )}
+
+      {scene.reports && (
+        <section className="grid gap-2" aria-label="Comentarios de clientes">
+          <p className="label-caps">Comentarios de clientes</p>
+          {scene.reports.map((report) => (
+            <article key={report.id} className="rounded-lg bg-surface-secondary px-3 py-2">
+              <p className="font-semibold text-ink">{report.from} · {report.title}</p>
+              <p className="mt-1 text-muted-ink">{report.body}</p>
+            </article>
+          ))}
+        </section>
       )}
 
       {outcomes.length > 0 && (

@@ -9,7 +9,7 @@ import {
   progressSnapshot,
   startSession,
 } from './engine.ts';
-import { ingenieriaSoftware as module } from './modules/ingenieria-software.ts';
+import { ingenieriaSoftwareV2 as module } from './modules/index.ts';
 import type { SceneResponse, SimulationState } from './types.ts';
 import { validateModule } from './validation.ts';
 

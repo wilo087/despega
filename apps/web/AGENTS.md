@@ -29,7 +29,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   puntajes. No agregar al cliente datos del guión que revelen la respuesta correcta.
 - El guión y los puntajes viven en `packages/simulator`; aquí no se escriben textos de
   historia ni reglas de puntaje. Las pantallas son genéricas por tipo (`screen`) e
-  interacción (`interaction.kind`) para servir a los 14 módulos previstos.
+  interacción (`interaction.kind`) para servir a las carreras del catálogo.
 - Toda decisión muestra consecuencia narrativa (`OutcomeSheet`); nunca solo
   «correcto/incorrecto». Ningún error bloquea el avance sin opción de reintento.
 - Interacciones de arrastre: usar `DragBoard` y `DraggableCard` de `dnd.tsx`, nunca un
@@ -70,3 +70,12 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - El logo es `DespegaLogo` de `@despega/brand` (vía `BrandLink`). `favicon.ico`,
   `icon.svg` y `apple-icon.png` de `src/app/` son copias de
   `packages/brand/assets/icons/`.
+
+## Landing y encuesta
+
+- `/` sigue la fuente de landing del 2026-11-12; `/experiencia` conserva la
+  presentación del simulador. `/encuesta` enlaza la sección del formulario.
+- La acción de encuesta es expresamente pública: Zod, creación sin lecturas
+  públicas, guardado transaccional en `@despega/data` y recibo idempotente.
+- Menores responden junto al tutor: nombre/correo/autorización, sin marketing.
+  Preguntas comerciales solo para familias/orientadores. Nunca registrar PII.

@@ -10,7 +10,7 @@ import {
   startSession,
 } from './engine.ts';
 import { MODULES } from './modules/index.ts';
-import { ingenieriaSoftware as module } from './modules/ingenieria-software.ts';
+import { ingenieriaSoftwareV2 as module } from './modules/index.ts';
 import type { AppliedOutcome, CareerModule, Interaction, SceneResponse, SimulationState } from './types.ts';
 
 /**
@@ -630,8 +630,9 @@ function declaredOutcomes(careerModule: CareerModule): Set<string> {
 
 const SECRETS = ['"correctCategoryId"', '"answer"', '"tags"', '"outcome"', '"outcomes"', '"tiers"', '"rules"', '"results"', '"perMatch"', '"timeoutOutcome"'];
 
-for (const careerModule of Object.values(MODULES)) {
-  describe(`partidas aleatorias: ${careerModule.title}`, () => {
+// Las partidas del mundo 3D se cubren con comandos y exploración en factory.test.ts.
+for (const careerModule of [...Object.values(MODULES).filter(item => item.presentation !== 'factory'), module]) {
+  describe(`partidas aleatorias: ${careerModule.title} v${careerModule.version}`, () => {
     it('600 partidas con respuestas al azar terminan el módulo sin romper ninguna regla', () => {
       const random = seeded(20260926);
       const reached = new Set<string>();

@@ -1,3 +1,4 @@
+import { IndustrialProfile } from '@/components/industrial-profile';
 import { getStudent, listProgressForStudent, listRunEvents, type CareerProgressRecord, type DecisionEvent } from '@despega/data';
 import { CAREERS, findModule, progressSnapshot, scoreBranches } from '@despega/simulator';
 import { Card, Chip, Meter, Label } from '@heroui/react';
@@ -64,7 +65,7 @@ export default async function StudentDetailPage({ params }: PageProps<'/estudian
           </Card>
         ) : (
           records.map((record) => {
-            const careerModule = findModule(record.careerId);
+            const careerModule = findModule(record.careerId, record.moduleVersion);
             const career = CAREERS.find((item) => item.id === record.careerId);
             if (!careerModule) return null;
             const snapshot = progressSnapshot(careerModule, record.state);
@@ -154,10 +155,10 @@ export default async function StudentDetailPage({ params }: PageProps<'/estudian
                       <Card.Description>Normalizado contra lo que podía ganar en las sesiones jugadas. Sin bien ni mal.</Card.Description>
                     </Card.Header>
                     <Card.Content className="@container">
-                      <div className="grid items-center gap-6 @2xl:grid-cols-2">
+                      {record.state.factory ? <IndustrialProfile values={snapshot.affinity.normalized} factory={record.state.factory} /> : <div className="grid items-center gap-6 @2xl:grid-cols-2">
                         <AffinityRadar values={snapshot.affinity.normalized} unavailable={snapshot.affinity.unavailable} width={440} />
                         <AffinityBars values={snapshot.affinity.normalized} unavailable={snapshot.affinity.unavailable} />
-                      </div>
+                      </div>}
                     </Card.Content>
                   </Card>
                 </div>

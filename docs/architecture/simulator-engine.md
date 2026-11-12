@@ -5,7 +5,7 @@ I/O, sin `Date.now()` implícito. La web, el backoffice y `packages/data` lo imp
 
 ## Por qué un motor declarativo
 
-El documento funcional pide que la mecánica sea una plantilla para 14 carreras. Por eso
+El documento funcional pide que la mecánica sea una plantilla reutilizable entre carreras. Por eso
 la historia es **data** (`CareerModule`) y el motor solo la interpreta. Una carrera nueva
 es un archivo nuevo en `src/modules/` más su registro en `src/modules/index.ts`; ni el
 motor ni las pantallas cambian.
@@ -16,6 +16,7 @@ motor ni las pantallas cambian.
 CareerModule
 ├─ id, careerId, version, title, tagline, company, playerRole
 ├─ initialPerformance (50), initialFlags (memoria inicial del mundo)
+├─ glossary? { term, meaning, aliases? }
 ├─ characters { id → nombre, rol, bio }
 └─ sessions[]
    └─ scenes[]
@@ -23,6 +24,7 @@ CareerModule
       ├─ lines[]            diálogo/narración previa (con `when` opcional)
       ├─ notification?      push del celular (+ `caller` que llama después)
       ├─ email?             correo recibido
+      ├─ reports?           comentarios de clientes para investigar
       └─ interaction        una de las 10 variantes
 ```
 
@@ -30,7 +32,7 @@ CareerModule
 | --- | --- | --- |
 | `none` | 1.1, 1.6, 2.5, 3.1 | Avanza; puede escribir memoria (`outcome.flags`). `cutToBlack` para cliffhangers. |
 | `dialogue` | 1.2, 1.4, 2.2, 3.4 | Opción elegida o `timeout` si hay `timeLimitSeconds`. |
-| `classification` | 1.3 | Aciertos contra `correctCategoryId`; tramos por `minCorrect`. |
+| `classification` | 1.3 solo en v2 | Aciertos contra `correctCategoryId`; tramos por `minCorrect`. |
 | `message-builder` | 1.5, 2.3 | Reglas por etiquetas de las frases (`only`, `includes`, `empty`, `always`); gana la primera. |
 | `sequence` | 2.1 | Paso y posición de inserción contra `answer`. |
 | `prioritization` | 2.4 | Tareas elegidas; guarda las descartadas en un flag. |
@@ -95,7 +97,7 @@ Errores tipados (`SimulationError`): `SESSION_NOT_STARTED`, `SESSION_LOCKED`,
 ## Pruebas
 
 `node --test` con *type stripping* de Node 24 (sin compilación previa). Cubren: validez
-del módulo, mejor y peor camino completos (91 y 32 puntos), bloqueo de sesiones, escena
+del módulo, mejor camino v3 (86 puntos) y mejor/peor camino v2 (91 y 32 puntos), bloqueo de sesiones, escena
 equivocada, respuestas inválidas, ramificación de 1.3 → 1.4, contador de quejas,
 reglas de mensajes, consecuencias de 2.4 en 3.1, emparejamiento proporcional, dashboard
 según desempeño, ventana de lanzamiento, que la escena pública no filtre respuestas,
@@ -106,7 +108,7 @@ posibles de clasificación, mensajes (en cualquier orden), secuencia, priorizaci
 emparejamiento, cada umbral del dashboard y los tiempos agotados. Exige consecuencia
 narrativa coherente con la jugada y puntajes iguales a la tabla de
 `functional-analysis.md`. Además juega 600 partidas aleatorias reproducibles en cada
-módulo registrado: todas terminan, ninguna escena pública filtra respuestas y todos los
+módulo vigente y en la versión v2 conservada: todas terminan, ninguna escena pública filtra respuestas y todos los
 resultados declarados en el guión son alcanzables. Un tipo de interacción nuevo se
 agrega a `randomResponse` y `declaredOutcomes` de ese archivo.
 
@@ -118,3 +120,25 @@ agrega a `randomResponse` y `declaredOutcomes` de ese archivo.
 3. `validateModule` debe devolver cero errores; agregar pruebas de mejor y peor camino.
 4. Si el escenario necesita una pantalla nueva, agregar el `ScreenKind` y su componente
    en `apps/web/src/components/simulator/screens/`. No crear pantallas por carrera.
+
+## Versiones del guion
+
+`findModule(careerId)` devuelve la versión vigente (Software v3). Cuando existe
+progreso, `findModule(careerId, moduleVersion)` devuelve las reglas de ese intento.
+La capa de datos y las vistas usan la versión persistida; el motor rechaza una
+versión diferente. La definición original de 1.3 se conserva para v2. Los textos
+comunes pueden actualizarse, sin cambiar su evaluación. V3 usa `none` en 1.3, con
+`reports` públicos y `s1Clue = reviewed`, sin puntaje ni pista anticipada. Los
+máximos de afinidad se calculan sobre la versión jugada. Ver ADR 0008.
+
+## Presentación de fábrica
+
+Los módulos con `presentation: factory` usan objetivos de exploración y comandos
+de fábrica, evaluados en el mismo límite de autoridad del servidor. El estado
+opcional no reinterpreta los intentos de Software. Ver [Industrial 3D](industrial-3d.md).
+
+`tutorial` es un comando de interfaz sin puntaje ni evento de decisión. Persiste
+bienvenida, movimiento, interacción, tablet y cierre; mantiene la fábrica pausada
+en el motor y restaura la pausa previa al omitir o terminar. `pause` y `resume`
+suspenden/reanudan la práctica sin activar producción. Durante la guía se rechazan
+respuestas, interacciones y borradores de la actividad narrativa. Ver ADR 0010.

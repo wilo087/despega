@@ -15,8 +15,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Next.js 16 App Router, puerto local `3001`, desplegado en AWS Amplify (SSR).
 - Staff de DESPEGA y orientación: panel del piloto, estudiantes, detalle con registro
   de decisiones y visor del guión con sus puntajes (`/modulos/[careerId]`).
-- Lee DynamoDB desde Server Components con `@despega/data`; la única escritura es el
-  reinicio administrativo de un intento (Server Action, solo `despega/admin`).
+- Lee DynamoDB desde Server Components con `@despega/data`; las escrituras son el
+  reinicio de un intento y el seguimiento de contactos del CRM (Server Actions,
+  solo `despega/admin`).
 
 ## Reglas
 
@@ -57,3 +58,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Listados sin `Scan`: índices documentados o `BatchGetItem` por claves exactas.
 - `.env.example` es el contrato de variables; mismas keys en `.env.local`,
   `.env.develop` y `.env.production`. Sin secretos.
+
+## CRM de la encuesta
+
+- `/crm`, fichas, seguimiento y CSV exigen `despega/admin` dentro de cada página,
+  acción y route handler. Orientación no consulta contactos de captación.
+- KPI sobre contadores completos del período; filtros de perfil/ciudad/estado
+  afectan lista y CSV. No se presentan respuestas como contactos únicos o visitas.

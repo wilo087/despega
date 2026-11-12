@@ -1,5 +1,5 @@
 import { careerOverview, countStudents, getStudents, type CareerOverview, type StudentProfile } from '@despega/data';
-import { findModule } from '@despega/simulator';
+import { MODULES, findModule } from '@despega/simulator';
 import { Card, Chip } from '@heroui/react';
 import { ArrowRight, Flag, Gauge, PlayCircle, Radar, Users } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -15,13 +15,15 @@ export const metadata: Metadata = { title: 'Panel' };
 
 const PILOT_CAREER = 'ingenieria-software';
 
-export default async function DashboardPage() {
-  const pilot = findModule(PILOT_CAREER)!;
+export default async function DashboardPage({searchParams}: PageProps<'/'>) {
+  const params=await searchParams;
+  const careerId=typeof params.carrera==='string'&&findModule(params.carrera)?params.carrera:PILOT_CAREER;
+  const pilot = findModule(careerId)!;
   let students = 0;
   let overview: CareerOverview | null = null;
   let profiles = new Map<string, StudentProfile>();
   try {
-    [students, overview] = await Promise.all([countStudents(dataConfig()), careerOverview(dataConfig(), PILOT_CAREER, { recent: 8 })]);
+    [students, overview] = await Promise.all([countStudents(dataConfig()), careerOverview(dataConfig(), careerId, { recent: 8 })]);
     profiles = await getStudents(dataConfig(), overview.recent.map((item) => item.studentId));
   } catch (error) {
     console.error('No se pudo cargar el panel.', error);
@@ -29,9 +31,10 @@ export default async function DashboardPage() {
 
   return (
     <>
+      <form method="get" className="mb-4 flex items-center gap-3"><label htmlFor="career">Carrera</label><select id="career" name="carrera" defaultValue={careerId} className="rounded-xl border border-line bg-surface p-2">{Object.values(MODULES).map(m=><option key={m.careerId} value={m.careerId}>{m.title}</option>)}</select><button className="rounded-xl border border-line p-2" type="submit">Ver</button></form>
       <PageHeader
         leading={<CareerIcon careerId={pilot.careerId} />}
-        title="Así va el piloto"
+        title="Así van las experiencias"
         description={`${pilot.title} · ${pilot.tagline}. Datos en vivo desde DynamoDB.`}
         actions={
           <Chip size="sm" color="success" variant="soft">

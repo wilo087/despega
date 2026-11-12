@@ -1,5 +1,6 @@
-const dateTime = new Intl.DateTimeFormat('es-419', { dateStyle: 'medium', timeStyle: 'short' });
-const date = new Intl.DateTimeFormat('es-419', { dateStyle: 'medium' });
+export const DISPLAY_TIME_ZONE = 'America/Santo_Domingo';
+const dateTime = new Intl.DateTimeFormat('es-DO', { dateStyle: 'medium', timeStyle: 'short', timeZone: DISPLAY_TIME_ZONE });
+const date = new Intl.DateTimeFormat('es-DO', { dateStyle: 'medium', timeZone: DISPLAY_TIME_ZONE });
 
 export function formatDateTime(value: string | undefined): string {
   if (!value) return '—';

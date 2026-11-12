@@ -1,5 +1,6 @@
 import { CfnOutput, RemovalPolicy, Stack, Tags, aws_dynamodb as dynamodb, aws_iam as iam, type StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
+import { SURVEY_STORAGE } from '@despega/data/schema';
 import { AmplifyHosting } from './constructs/amplify-hosting';
 import { Auth } from './constructs/auth';
 import { Database } from './constructs/database';
@@ -79,6 +80,11 @@ export class PlatformStack extends Stack {
       computePolicyStatements: [
         tableStatement(core, ['dynamodb:GetItem', 'dynamodb:BatchGetItem', 'dynamodb:Query'], { indexes: true }),
         tableStatement(simulation, ['dynamodb:GetItem', 'dynamodb:BatchGetItem', 'dynamodb:Query'], { indexes: true }),
+        // CRM: solo seguimiento de contactos existentes; sin borrado ni nuevos perfiles.
+        new iam.PolicyStatement({
+          actions: ['dynamodb:UpdateItem'], resources: [core.tableArn],
+          conditions: { 'ForAllValues:StringEquals': { 'dynamodb:LeadingKeys': [SURVEY_STORAGE.leadsPartition] } },
+        }),
         // Reinicio administrativo de un intento (nuevo runId; los eventos se conservan).
         tableStatement(simulation, ['dynamodb:PutItem']),
       ],

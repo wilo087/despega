@@ -4,6 +4,7 @@ import type { PublicScene } from '@despega/simulator';
 import { motion } from 'motion/react';
 import type { ReactNode } from 'react';
 import { SkipButton } from './conversation';
+import { GlossaryGuide } from './glossary';
 
 type InteractionKind = PublicScene['interaction']['kind'];
 
@@ -63,6 +64,7 @@ export function SceneWorkspace({
           ) : (
             <Waiting onSkip={onSkip} />
           )}
+          <GlossaryGuide />
         </div>
         {outcome && (
           // El degradé tapa lo que queda bajo el margen de la tarjeta fija al pie.

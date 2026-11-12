@@ -1,6 +1,6 @@
 'use client';
 
-import { AFFINITY_AXES, AFFINITY_LABELS, type AffinityAxis, type AffinityVector } from '@despega/simulator';
+import { AFFINITY_AXES, AFFINITY_LABELS, type AffinityAxis, type AffinityVector } from '@despega/simulator/public';
 import { animate, motion, useMotionValue, useReducedMotion, useTransform, type MotionValue } from 'motion/react';
 import { useEffect } from 'react';
 import { RADAR_SERIES_CLASS, RADAR_VIEW, RadarGrid, RadarLabels, radarPoint } from './affinity-radar';

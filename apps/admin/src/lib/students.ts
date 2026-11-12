@@ -1,7 +1,7 @@
 import 'server-only';
 
 import type { CareerProgressSummary, StudentProfile } from '@despega/data';
-import { AFFINITY_LABELS, buildAffinityProfile, cumulativeAffinityMaximum, type CareerModule } from '@despega/simulator';
+import { AFFINITY_LABELS, factoryAffinity, buildAffinityProfile, findModule, cumulativeAffinityMaximum, type CareerModule } from '@despega/simulator';
 import type { StudentRow } from '@/components/tables';
 import { formatDate, formatDateTime } from './format';
 
@@ -16,8 +16,10 @@ export function lastPlayedSession(module: CareerModule, summary: Pick<CareerProg
 }
 
 export function strongestAxis(module: CareerModule, summary: CareerProgressSummary): string | undefined {
-  const profile = buildAffinityProfile(summary.affinity, cumulativeAffinityMaximum(module, lastPlayedSession(module, summary)));
-  const axis = profile.ranking.find((candidate) => profile.normalized[candidate] > 0);
+  const playedModule = findModule(module.careerId, summary.moduleVersion);
+  if (!playedModule) return undefined;
+  const profile = playedModule.presentation === 'factory' ? factoryAffinity({affinity:summary.affinity}) : buildAffinityProfile(summary.affinity, cumulativeAffinityMaximum(playedModule, lastPlayedSession(playedModule, summary)));
+  const axis = profile.ranking.find((candidate) => (profile.normalized[candidate] ?? 0) > 0);
   return axis ? AFFINITY_LABELS[axis] : undefined;
 }
 

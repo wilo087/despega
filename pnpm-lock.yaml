@@ -232,6 +232,12 @@ importers:
 
   apps/web:
     dependencies:
+      '@babylonjs/core':
+        specifier: 9.35.0
+        version: 9.35.0
+      '@babylonjs/loaders':
+        specifier: 9.35.0
+        version: 9.35.0(@babylonjs/core@9.35.0)(babylonjs-gltf2interface@9.35.0)
       '@despega/auth':
         specifier: workspace:*
         version: link:../../packages/auth
@@ -250,6 +256,9 @@ importers:
       '@dnd-kit/utilities':
         specifier: 3.2.2
         version: 3.2.2(react@19.3.0)
+      babylonjs-gltf2interface:
+        specifier: 9.35.0
+        version: 9.35.0
       lucide-react:
         specifier: 1.48.0
         version: 1.48.0(react@19.3.0)
@@ -583,6 +592,15 @@ packages:
   '@babel/types@7.29.8':
     resolution: {integrity: sha512-Vj1jF3cPfxg7OAfoI7QnVKLoILlm2JF9pnVHrX8qx7AHMiYWT+NDAA7jChlNgRS4WTLc/fD1lXLmPixluj+3Gg==}
     engines: {node: '>=6.9.0'}
+
+  '@babylonjs/core@9.35.0':
+    resolution: {integrity: sha512-qY2uU4gVC1GA7vPfLtnF57bPBBuu5nGnh9efGZVWtba9naxeeH+Nkj919vEFhoBvmiDxbRXMOBKLp/wWC0YzYA==}
+
+  '@babylonjs/loaders@9.35.0':
+    resolution: {integrity: sha512-glYCpmSCukBcWMziRsxOI1hTDeCxa6/kqfDSRfej7MsD9N+dnZfZTd3+ReHpQe4F33v5/PoSTt3grN/pA0bXFg==}
+    peerDependencies:
+      '@babylonjs/core': ^9.0.0
+      babylonjs-gltf2interface: ^9.0.0
 
   '@dnd-kit/accessibility@3.1.1':
     resolution: {integrity: sha512-2P+YgaXF+gRsIihwwY1gCsQSYnu9Zyj2py8kY5fFvUM1qm2WA2u639R6YNVfU4GWr+ZM5mqEsfHZZLoRONbemw==}
@@ -1699,6 +1717,9 @@ packages:
   axobject-query@4.1.0:
     resolution: {integrity: sha512-qIj0G9wZbMGNLjLmg1PT6v2mE9AH2zlnADJD/2tC6E00hgmhUOfEB6greHPAfLRSufHqROIUTkw6E+M3lH0PTQ==}
     engines: {node: '>= 0.4'}
+
+  babylonjs-gltf2interface@9.35.0:
+    resolution: {integrity: sha512-A3W2LYIfncj3q5MTEn7CO0zBih9ZCIaSZu81X5oecaGBefIyFoJnNcbiqFlId6jBuAZ4a9hYYY/nqQMZrcMVPw==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -3332,6 +3353,13 @@ snapshots:
       '@babel/helper-string-parser': 7.29.7
       '@babel/helper-validator-identifier': 7.29.7
 
+  '@babylonjs/core@9.35.0': {}
+
+  '@babylonjs/loaders@9.35.0(@babylonjs/core@9.35.0)(babylonjs-gltf2interface@9.35.0)':
+    dependencies:
+      '@babylonjs/core': 9.35.0
+      babylonjs-gltf2interface: 9.35.0
+
   '@dnd-kit/accessibility@3.1.1(react@19.3.0)':
     dependencies:
       react: 19.3.0
@@ -4288,6 +4316,8 @@ snapshots:
   axe-core@4.13.0: {}
 
   axobject-query@4.1.0: {}
+
+  babylonjs-gltf2interface@9.35.0: {}
 
   balanced-match@1.0.2: {}
 

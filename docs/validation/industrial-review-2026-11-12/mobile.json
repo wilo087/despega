@@ -1,0 +1,226 @@
+[
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":-13,\"z\":12}",
+    "scene": "Acceso y seguridad · 1.0Tu personaje",
+    "selected": "1.0 · Tu personaje"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":-13,\"z\":-4}",
+    "scene": "Operaciones · 1.1Un pedido urgente",
+    "selected": "1.1 · Un pedido urgente"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":-13,\"z\":-4}",
+    "scene": "Operaciones · 1.2Antes de opinar",
+    "selected": "1.2 · Antes de opinar"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":-13,\"z\":12}",
+    "scene": "Acceso y seguridad · 1.3Seguridad antes de entrar",
+    "selected": "1.3 · Seguridad antes de entrar"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":0,\"z\":4}",
+    "scene": "Línea 2 · 1.4Escucha a quienes trabajan aquí",
+    "selected": "1.4 · Escucha a quienes trabajan aquí"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":0,\"z\":4}",
+    "scene": "Línea 2 · 1.5Medir para comprender",
+    "selected": "1.5 · Medir para comprender"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":0,\"z\":4}",
+    "scene": "Línea 2 · 1.6Los datos de la línea",
+    "selected": "1.6 · Los datos de la línea"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":-13,\"z\":-4}",
+    "scene": "Operaciones · 1.7Responder al cliente",
+    "selected": "1.7 · Responder al cliente"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":0,\"z\":4}",
+    "scene": "Línea 2 · 1.8La máquina se detiene",
+    "selected": "1.8 · La máquina se detiene"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":-13,\"z\":12}",
+    "scene": "Acceso y seguridad · 1.9Lo que descubriste",
+    "selected": "1.9 · Lo que descubriste"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":0,\"z\":4}",
+    "scene": "Línea 2 · 2.1Antes de culpar",
+    "selected": "2.1 · Antes de culpar"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":-13,\"z\":-4}",
+    "scene": "Operaciones · 2.2Encontrar las causas",
+    "selected": "2.2 · Encontrar las causas"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":11,\"z\":3}",
+    "scene": "Control de calidad · 2.3Dónde concentrar el esfuerzo",
+    "selected": "2.3 · Dónde concentrar el esfuerzo"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":0,\"z\":4}",
+    "scene": "Línea 2 · 2.4Diseña la distribución",
+    "selected": "2.4 · Diseña la distribución"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":-13,\"z\":-4}",
+    "scene": "Operaciones · 2.5Cada recurso cuenta",
+    "selected": "2.5 · Cada recurso cuenta"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":0,\"z\":4}",
+    "scene": "Línea 2 · 2.6Cambiar con el equipo",
+    "selected": "2.6 · Cambiar con el equipo"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":11,\"z\":3}",
+    "scene": "Control de calidad · 2.7Prueba piloto",
+    "selected": "2.7 · Prueba piloto"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":-13,\"z\":-4}",
+    "scene": "Operaciones · 2.8El plazo cambió",
+    "selected": "2.8 · El plazo cambió"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":-13,\"z\":12}",
+    "scene": "Acceso y seguridad · 2.9Preparar el próximo turno",
+    "selected": "2.9 · Preparar el próximo turno"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":0,\"z\":4}",
+    "scene": "Línea 2 · 3.1Empieza el turno",
+    "selected": "3.1 · Empieza el turno"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":0,\"z\":4}",
+    "scene": "Línea 2 · 3.2La selladora pide atención",
+    "selected": "3.2 · La selladora pide atención"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":0,\"z\":4}",
+    "scene": "Línea 2 · 3.3Reorganizar el equipo",
+    "selected": "3.3 · Reorganizar el equipo"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":-13,\"z\":-4}",
+    "scene": "Operaciones · 3.4Una confirmación responsable",
+    "selected": "3.4 · Una confirmación responsable"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":0,\"z\":4}",
+    "scene": "Línea 2 · 3.5Una persona necesita ayuda",
+    "selected": "3.5 · Una persona necesita ayuda"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":-13,\"z\":-4}",
+    "scene": "Operaciones · 3.6El despacho",
+    "selected": "3.6 · El despacho"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":-13,\"z\":-4}",
+    "scene": "Operaciones · 3.7Lo que te llevas",
+    "selected": "3.7 · Lo que te llevas"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":-13,\"z\":-4}",
+    "scene": "Operaciones · 3.8Tu experiencia en EnvaPlast",
+    "selected": "3.8 · Tu experiencia en EnvaPlast"
+  },
+  {
+    "error": null,
+    "horizontalOverflow": false,
+    "panelOverflow": false,
+    "position": "{\"x\":-13,\"z\":-4}",
+    "scene": "Operaciones · 3.9Tu siguiente etapa",
+    "selected": "3.9 · Tu siguiente etapa"
+  }
+]

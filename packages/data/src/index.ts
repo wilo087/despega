@@ -31,3 +31,5 @@ export {
   submitSceneResponse,
 } from './simulation-service.ts';
 export { careerOverview, type CareerOverview } from './overview.ts';
+export { submitSurvey, listSurveyLeads, getSurveyLead, updateSurveyLead, getSurveyMetrics } from './survey-repository.ts';
+export type { SurveyAnswers, SurveyLead, SurveyMetrics, LeadStatus } from './survey.ts';

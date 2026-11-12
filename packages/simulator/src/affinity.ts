@@ -10,6 +10,7 @@ import {
 } from './types.ts';
 
 export const AFFINITY_LABELS: Readonly<Record<AffinityAxis, string>> = {
+  numeric: 'Razonamiento numérico',
   analytical: 'Pensamiento analítico',
   communication: 'Comunicación y trabajo en equipo',
   detail: 'Atención al detalle',
@@ -18,6 +19,7 @@ export const AFFINITY_LABELS: Readonly<Record<AffinityAxis, string>> = {
 };
 
 export const AFFINITY_SHORT_LABELS: Readonly<Record<AffinityAxis, string>> = {
+  numeric: 'Números',
   analytical: 'Análisis',
   communication: 'Comunicación',
   detail: 'Detalle',
@@ -26,6 +28,7 @@ export const AFFINITY_SHORT_LABELS: Readonly<Record<AffinityAxis, string>> = {
 };
 
 export const AFFINITY_DESCRIPTIONS: Readonly<Record<AffinityAxis, string>> = {
+  numeric: 'Calculas e interpretas datos y recursos.',
   analytical: 'Investigas, buscas patrones y decides con evidencia.',
   communication: 'Mantienes informado al equipo y cuidas cómo dices las cosas.',
   detail: 'Revisas lo que otros pasan por alto antes de dar algo por terminado.',

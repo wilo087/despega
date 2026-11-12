@@ -167,3 +167,13 @@ pnpm infra:synth:prd
 pnpm infra:diff:dev    # requiere sesión SSO: aws sso login --profile qrioso-dev
 pnpm infra:deploy:dev  # requiere autorización explícita
 ```
+
+## Landing y CRM
+
+No agregan variables, tablas, GSI ni dependencias. La política del rol SSR admin
+necesita un nuevo permiso UpdateItem en `core`, condicionado a la partición CRM.
+Este cambio se entrega en CDK; hace falta un despliegue autorizado antes de usar
+el seguimiento en Amplify. Los perfiles locales SSO pueden validarlo en DEV sin
+modificar los roles desplegados. No se ejecuta deploy con esta implementación.
+Antes de la apertura pública se revisan aviso, retención, canal del responsable y
+el procedimiento declarado de autorización del tutor (ADR 0011).

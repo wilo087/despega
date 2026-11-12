@@ -2,6 +2,7 @@ import { ensureCareerProgress } from '@despega/data';
 import { getPublicScene } from '@despega/simulator';
 import type { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
+import { FactoryPlayer } from '@/components/factory/player';
 import { SimulatorPlayer } from '@/components/simulator/player';
 import { requireStudent } from '@/lib/auth';
 import { dataConfig } from '@/lib/data';
@@ -15,8 +16,7 @@ export async function generateMetadata({ params }: PageProps<'/simulador/[career
 
 export default async function PlayPage({ params }: PageProps<'/simulador/[careerId]/jugar'>) {
   const { careerId } = await params;
-  const careerModule = playableModule(careerId);
-  if (!careerModule) notFound();
+  if (!playableModule(careerId)) notFound();
   const student = await requireStudent(`/simulador/${careerId}/jugar`);
 
   const record = await ensureCareerProgress(dataConfig(), {
@@ -25,10 +25,13 @@ export default async function PlayPage({ params }: PageProps<'/simulador/[career
     playerName: student.givenName,
     now: new Date().toISOString(),
   });
+  const careerModule = playableModule(careerId, record.moduleVersion);
+  if (!careerModule) notFound();
   if (record.status === 'completed') redirect(`/simulador/${careerId}`);
 
+  const Player = careerModule.presentation === 'factory' ? FactoryPlayer : SimulatorPlayer;
   return (
-    <SimulatorPlayer
+    <Player
       module={toModuleView(careerModule)}
       playerName={record.state.playerName}
       initialScene={getPublicScene(careerModule, record.state)}

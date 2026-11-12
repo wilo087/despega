@@ -32,7 +32,7 @@ export default async function StudentHomePage() {
       <div className="grid gap-10">
         <header>
           <h1 className="text-2xl font-bold sm:text-3xl">Hola, {student.givenName}</h1>
-          <p className="mt-1.5 text-ink-soft">Elige una carrera y vive su semana. Tu progreso se guarda después de cada escena.</p>
+          <p className="mt-1.5 text-ink-soft">Elige una carrera y vive la experiencia del entorno laboral real. Tu progreso se guarda después de cada escena.</p>
         </header>
 
         {unavailable && (
@@ -86,7 +86,7 @@ function SectionHeader({ id, title, description, aside }: { id: string; title: s
 }
 
 function CareerCard({ career, record }: { career: Career; record?: CareerProgressRecord }) {
-  const careerModule = findModule(career.id);
+  const careerModule = findModule(career.id, record?.moduleVersion);
   if (!careerModule) return null;
   const snapshot = record ? progressSnapshot(careerModule, record.state) : null;
   const completed = snapshot?.status === 'completed';

@@ -4,6 +4,7 @@ import type { ResolvedLine } from '@despega/simulator';
 import { BookOpen } from 'lucide-react';
 import { motion } from 'motion/react';
 import { CharacterAvatar } from '@/components/characters/character-avatar';
+import { GlossaryText } from './glossary';
 import type { ModuleView } from '@/lib/simulation-types';
 
 export function speakerName(module: ModuleView, speaker: string): string {
@@ -23,9 +24,9 @@ export function ChatLine({ line, module, talking = false }: { line: ResolvedLine
       <CharacterAvatar characterId={line.speaker} mood={line.mood} talking={talking} size={40} decorative />
       <div className="max-w-[85%]">
         <p className="mb-1 text-xs font-bold text-muted">
-          {speakerName(module, line.speaker)} <span className="font-medium">· {module.characters[line.speaker]?.role}</span>
+          {speakerName(module, line.speaker)} <span className="font-medium">· <GlossaryText text={module.characters[line.speaker]?.role ?? ''} /></span>
         </p>
-        <p className="rounded-xl rounded-bl-md bg-mist px-4 py-2.5 text-[0.95rem] text-ink">{line.text}</p>
+        <p className="rounded-xl rounded-bl-md bg-mist px-4 py-2.5 text-[0.95rem] text-ink"><GlossaryText text={line.text} /></p>
       </div>
     </motion.div>
   );
@@ -36,7 +37,7 @@ export function PlayerLine({ text, playerName }: { text: string; playerName: str
     <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
       <div className="max-w-[85%]">
         <p className="mb-1 text-right text-xs font-bold text-muted">{playerName} (tú)</p>
-        <p className="rounded-xl rounded-br-md bg-accent px-4 py-2.5 text-[0.95rem] text-white">{text}</p>
+        <p className="rounded-xl rounded-br-md bg-accent px-4 py-2.5 text-[0.95rem] text-white"><GlossaryText text={text} /></p>
       </div>
     </motion.div>
   );
@@ -51,7 +52,7 @@ export function NarrationLine({ text, dark = false }: { text: string; dark?: boo
       className={`mx-auto flex max-w-xl items-start justify-center gap-2 text-center text-sm italic ${dark ? 'text-white/80' : 'text-muted'}`}
     >
       <BookOpen className="mt-0.5 size-4 shrink-0 opacity-70" aria-hidden />
-      <span>{text}</span>
+      <span><GlossaryText text={text} /></span>
     </motion.p>
   );
 }

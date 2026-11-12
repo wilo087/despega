@@ -1,0 +1,46 @@
+{
+  "tests": {
+    "packages/auth": 11,
+    "packages/simulator": 76,
+    "packages/data": 10,
+    "apps/admin": 1,
+    "infra": 12
+  },
+  "totalTests": 110,
+  "typecheck": "passed",
+  "lint": "passed",
+  "buildWeb": "passed",
+  "buildAdmin": "passed",
+  "spatialAudit": {
+    "boundsChecked": 34,
+    "directionsChecked": 16,
+    "maximumWalkRadius": 0.6418414157557701,
+    "playerRadius": 0.65
+  },
+  "browser": {
+    "desktop": {
+      "width": 1280,
+      "height": 720,
+      "scenes": 28
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "scenes": 28
+    }
+  },
+  "deployed": false,
+  "clientAudit": {
+    "privateNarrativeChecks": 19,
+    "serverBabylonDependencyReferences": 0,
+    "clientFiles": 199,
+    "gzipBytesAllClientChunks": 1652459
+  },
+  "temporaryReviewRouteStatus": 404,
+  "artifacts": {
+    "glb": 20,
+    "portraits": 2,
+    "totalDownloadBytes": 2764801,
+    "trianglesAcrossAllAssets": 44456
+  }
+}

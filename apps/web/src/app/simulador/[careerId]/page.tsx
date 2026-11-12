@@ -1,3 +1,5 @@
+import { FactoryResults } from '@/components/factory/results';
+import '@/components/factory/factory.css';
 import { getProgress } from '@despega/data';
 import {
   AFFINITY_LABELS,
@@ -15,9 +17,10 @@ import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { AppShell } from '@/components/app/app-shell';
 import { CareerIcon } from '@/components/careers/career-icon';
-import { CharacterAvatar } from '@/components/characters/character-avatar';
 import { PerformanceMeter, SessionStatusBadge } from '@/components/dashboard/career-progress';
+import { GlossaryProvider } from '@/components/simulator/glossary';
 import { AffinityBars, AffinityRadar } from '@/components/simulator/affinity-radar';
+import { TeamRoster } from '@/components/simulator/team-roster';
 import { requireStudent } from '@/lib/auth';
 import { dataConfig } from '@/lib/data';
 import { playableModule } from '@/lib/simulation';
@@ -30,10 +33,11 @@ export async function generateMetadata({ params }: PageProps<'/simulador/[career
 
 export default async function CareerHubPage({ params }: PageProps<'/simulador/[careerId]'>) {
   const { careerId } = await params;
-  const careerModule = playableModule(careerId);
-  if (!careerModule) notFound();
+  if (!playableModule(careerId)) notFound();
   const student = await requireStudent(`/simulador/${careerId}`);
   const record = await getProgress(dataConfig(), student.studentId, careerId);
+  const careerModule = playableModule(careerId, record?.moduleVersion);
+  if (!careerModule) notFound();
   const snapshot = record ? progressSnapshot(careerModule, record.state) : null;
   const completed = snapshot?.status === 'completed';
   const current = snapshot?.sessions.find((session) => session.status === 'in_progress' || session.status === 'available');
@@ -49,6 +53,7 @@ export default async function CareerHubPage({ params }: PageProps<'/simulador/[c
   const cta = current?.status === 'in_progress' ? `Continuar la sesión ${current.number}` : `Empezar la sesión ${current?.number ?? 1}`;
 
   return (
+    <GlossaryProvider entries={careerModule.glossary ?? []}>
     <AppShell
       student={student}
       crumbs={[{ label: 'Inicio', href: '/inicio' }, { label: careerModule.title }]}
@@ -85,20 +90,7 @@ export default async function CareerHubPage({ params }: PageProps<'/simulador/[c
             </div>
           </section>
 
-          <section className="card p-5" aria-labelledby="equipo">
-            <h2 id="equipo" className="text-sm font-semibold text-ink">Tu equipo en {careerModule.company}</h2>
-            <ul className="mt-2 divide-y divide-line">
-              {Object.values(careerModule.characters).map((character) => (
-                <li key={character.id} className="flex items-center gap-3 py-3 last:pb-0">
-                  <CharacterAvatar characterId={character.id} mood="happy" size={44} decorative />
-                  <div className="min-w-0">
-                    <p className="font-semibold text-ink">{character.name}</p>
-                    <p className="text-sm text-muted">{character.role}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </section>
+          <TeamRoster company={careerModule.company} characters={careerModule.characters} />
         </div>
 
         <section className="grid gap-4" aria-labelledby="sesiones">
@@ -150,7 +142,7 @@ export default async function CareerHubPage({ params }: PageProps<'/simulador/[c
               {[
                 { icon: Timer, title: 'Reloj real', text: 'Algunas decisiones tienen 15 o 20 segundos. Si no eliges, el juego sigue.' },
                 { icon: Clock3, title: '~30 minutos por sesión', text: 'Puedes pausar entre escenas: tu progreso se guarda al instante.' },
-                { icon: Compass, title: 'Tu perfil al final', text: 'Desempeño, afinidad en 5 ejes y el camino que más se parece a ti.' },
+                { icon: Compass, title: 'Tu perfil al final', text: 'Desempeño, afinidad y caminos para seguir explorando.' },
               ].map((item) => (
                 <li key={item.title} className="card flex gap-4 p-5">
                   <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-accent-soft text-accent">
@@ -167,6 +159,7 @@ export default async function CareerHubPage({ params }: PageProps<'/simulador/[c
         )}
       </div>
     </AppShell>
+    </GlossaryProvider>
   );
 }
 
@@ -220,6 +213,7 @@ function Results({ careerModule, state }: { careerModule: CareerModule; state: S
         </div>
       </section>
 
+      {state.factory && <section className="card p-6"><h2 className="mb-4 text-lg font-bold">Tu trabajo en EnvaPlast</h2><FactoryResults skillsOnly world={{affinity:snapshot.affinity,skills:Object.fromEntries(Object.entries(state.factory.skills).map(([k,s])=>[k,s.possible?Math.round(s.earned/s.possible*100):null])) as Record<'soft'|'technical'|'tools',number|null>,climate:Number(state.flags.clima_equipo)}}/><p className="mt-4 text-sm">Despacho: {state.factory.production.dispatched?.toLocaleString('es-DO')??'Pendiente'} / 9.000 cajas</p></section>}
       <section className="grid gap-4" aria-labelledby="recorrido">
         <SectionTitle id="recorrido" title="Tu recorrido, decisión por decisión" />
         <ol className="card divide-y divide-line overflow-hidden">

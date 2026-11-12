@@ -71,6 +71,13 @@ describe('PlatformStack', () => {
     const policies = JSON.stringify(template.findResources('AWS::IAM::Policy'));
     assert.equal(policies.includes('dynamodb:Scan'), false);
     assert.equal(policies.includes('dynamodb:DeleteItem'), false);
+    // El seguimiento CRM no habilita edición de perfiles del estudiante.
+    template.hasResourceProperties('AWS::IAM::Policy', {
+      PolicyDocument: { Statement: Match.arrayWith([Match.objectLike({
+        Action: 'dynamodb:UpdateItem',
+        Condition: { 'ForAllValues:StringEquals': { 'dynamodb:LeadingKeys': ['SURVEY#landing-v1'] } },
+      })]) },
+    });
     template.hasResourceProperties('AWS::IAM::Role', { RoleName: 'despega_dev_web_amplify_compute_role' });
     template.hasResourceProperties('AWS::IAM::Role', { RoleName: 'despega_dev_admin_amplify_compute_role' });
     template.hasResourceProperties('AWS::IAM::Policy', {

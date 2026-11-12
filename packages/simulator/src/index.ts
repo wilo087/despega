@@ -29,4 +29,8 @@ export {
 } from './engine.ts';
 export { validateModule } from './validation.ts';
 export { CAREERS, findCareer, type Career, type CareerStatus } from './careers.ts';
-export { MODULES, findModule, ingenieriaSoftware } from './modules/index.ts';
+export { MODULES, findModule, ingenieriaSoftware, ingenieriaSoftwareV2 } from './modules/index.ts';
+
+export type * from './factory/types.ts';
+export { factoryAffinity, factoryCycle, factorySpent, validateFactoryLayout } from './factory/engine.ts';
+export { ingenieriaIndustrial } from './modules/ingenieria-industrial.ts';

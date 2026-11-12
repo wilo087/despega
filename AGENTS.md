@@ -5,8 +5,9 @@ repositorio; los `AGENTS.md` de cada workspace agregan reglas propias.
 
 DESPEGA es un simulador de inmersión de carreras para estudiantes de colegio (15–18
 años): una historia jugable con personajes, decisiones y consecuencias. El piloto es
-**Ingeniería de Software — «Tu semana en PixelForge»**; el documento funcional prevé 14
-carreras con la misma mecánica.
+**Ingeniería de Software — «Tu experiencia como Practicante Junior en la empresa PixelForge»**.
+El documento funcional original prevé 14 carreras; las actualizaciones del cliente de
+octubre amplían el catálogo a 19 (ver `docs/requirements/2026-10-30-actualizaciones-plataforma.md`).
 
 ## Lectura obligatoria
 
@@ -17,7 +18,8 @@ Antes de proponer arquitectura, datos, contenido o flujos:
 3. `docs/funtional.md` (documento del cliente, fuente de verdad del producto) y
    `docs/architecture/functional-analysis.md` (interpretaciones y supuestos).
 4. Si la tarea toca el simulador o el guión: `docs/architecture/simulator-engine.md` y
-   `packages/simulator/AGENTS.md`.
+   `packages/simulator/AGENTS.md`. Para Industrial 3D, leer también
+   `docs/architecture/industrial-3d.md` y ADR 0009.
 5. Si toca datos o permisos: `docs/architecture/data-model.md`.
 6. Si toca AWS o variables: `docs/architecture/environments-and-deployment.md`.
 7. Si toca colores, logo o íconos: `packages/brand/AGENTS.md`.
@@ -51,6 +53,7 @@ estable.**
 | Web de estudiantes (`apps/web`) | Next.js (App Router, SSR, Server Actions), React, Tailwind CSS |
 | Backoffice (`apps/admin`) | Next.js, **HeroUI v3** (`@heroui/react`, `@heroui/styles`), Tailwind CSS |
 | Simulador | Motor propio en TypeScript puro (`packages/simulator`); en la web: `motion` (animación), `@dnd-kit/core` + `@dnd-kit/utilities` (arrastrar o tocar), `lucide-react` (iconos), `zod` (validación de Server Actions). Gráficas en SVG propio, sin librería de charts |
+| Mundo 3D (`apps/web`) | Babylon.js (`@babylonjs/core`, `@babylonjs/loaders`) 9.35.0; modelos originales Blender/glTF |
 | Identidad y datos | AWS SDK v3 (`@aws-sdk/client-dynamodb`, `@aws-sdk/lib-dynamodb`, `@aws-sdk/client-cognito-identity-provider`), `aws-jwt-verify` |
 | Infraestructura | AWS CDK v2 (`aws-cdk-lib`, `aws-cdk`, `constructs`), `tsx` |
 

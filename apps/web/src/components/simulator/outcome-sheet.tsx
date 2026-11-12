@@ -1,11 +1,12 @@
 'use client';
 
-import { AFFINITY_SHORT_LABELS, type AffinityAxis, type AppliedOutcome } from '@despega/simulator';
+import { AFFINITY_SHORT_LABELS, type AffinityAxis, type AppliedOutcome } from '@despega/simulator/public';
 import { ArrowRight, Sparkles, Timer } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import { CharacterAvatar } from '@/components/characters/character-avatar';
 import type { ModuleView } from '@/lib/simulation-types';
+import { GlossaryText } from './glossary';
 import { speakerName } from './conversation';
 
 /**
@@ -82,13 +83,13 @@ export function OutcomeSheet({
               <CharacterAvatar characterId={reaction.speaker} mood={reaction.mood} talking={talking && index === 0} size={56} decorative />
               <div>
                 <p className="text-xs font-bold text-muted">{speakerName(module, reaction.speaker)}</p>
-                <p className="mt-0.5 rounded-xl rounded-bl-md bg-mist px-4 py-2.5 text-ink">{reaction.text}</p>
+                <p className="mt-0.5 rounded-xl rounded-bl-md bg-mist px-4 py-2.5 text-ink"><GlossaryText text={reaction.text} /></p>
               </div>
             </motion.div>
           ))}
           {outcome.narration && (
             <p className="flex items-start gap-2 rounded-xl bg-sun-soft px-4 py-2.5 text-sm font-semibold text-sun-strong">
-              <Sparkles className="mt-0.5 size-4 shrink-0" aria-hidden /> {outcome.narration}
+              <Sparkles className="mt-0.5 size-4 shrink-0" aria-hidden /> <GlossaryText text={outcome.narration} />
             </p>
           )}
         </div>

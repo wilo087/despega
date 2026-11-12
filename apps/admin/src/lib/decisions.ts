@@ -11,6 +11,11 @@ export function describeResponse(scene: Scene | undefined, event: DecisionEvent)
   const interaction = scene.interaction;
   const response = event.response;
   switch (response.kind) {
+    case 'factory': {
+      const c=response.command;if(c.op==='interact')return `Exploró: ${c.targetId}`;
+      if(c.op==='submit')return c.timedOut?'Continuó tras agotarse el tiempo.':(c.choices??[]).map(id=>[...(scene.factory?.choices??[]),...(scene.factory?.cards??[])].find(o=>o.id===id)?.label??id).join(' · ') || 'Registró su trabajo y continuó.';
+      return undefined;
+    }
     case 'timeout':
       return 'No eligió antes de que se acabara el tiempo.';
     case 'dialogue':

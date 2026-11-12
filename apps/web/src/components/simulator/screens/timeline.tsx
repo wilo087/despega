@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { CharacterAvatar } from '@/components/characters/character-avatar';
 import type { ModuleView } from '@/lib/simulation-types';
 import { speakerName } from '../conversation';
+import { GlossaryText } from '../glossary';
 import type { LineReveal } from './types';
 
 /**
@@ -44,7 +45,7 @@ export function TimelineScreen({
             <CharacterAvatar characterId={line.speaker} mood={line.mood} talking={!reveal.done} size={64} decorative />
             <div>
               <p className="text-xs font-bold text-sun">{speakerName(module, line.speaker)}</p>
-              <p className="mt-1 max-w-2xl rounded-xl rounded-bl-md bg-white/10 px-4 py-3 text-lg">{line.text}</p>
+              <p className="mt-1 max-w-2xl rounded-xl rounded-bl-md bg-white/10 px-4 py-3 text-lg"><GlossaryText text={line.text} /></p>
             </div>
           </div>
         ))}
@@ -69,7 +70,7 @@ export function TimelineScreen({
                   <span className="absolute -left-[33px] top-4 grid size-4 place-items-center rounded-full bg-accent ring-4 ring-accent-soft" aria-hidden />
                   <div className="rounded-xl border border-line bg-paper p-4">
                     <p className="text-xs font-bold uppercase tracking-wider text-accent">{stage.period}</p>
-                    <p className="font-display text-xl font-bold">{stage.title}</p>
+                    <p className="font-display text-xl font-bold"><GlossaryText text={stage.title} /></p>
                     <p className="mt-1 text-ink-soft">«{stage.narration}»</p>
                   </div>
                 </motion.li>
@@ -95,7 +96,7 @@ export function TimelineScreen({
                     <span className="chip mb-3 bg-accent text-white"><Sparkles className="size-3.5" aria-hidden /> Se parece a ti</span>
                   )}
                   <p className="text-xs font-bold uppercase tracking-wider text-muted">{branch.path}</p>
-                  <p className="mt-1 font-display text-xl font-bold">{branch.title}</p>
+                  <p className="mt-1 font-display text-xl font-bold"><GlossaryText text={branch.title} /></p>
                   <p className="mt-2 text-sm text-ink-soft">«{branch.narration}»</p>
                   {branch.aligned && <p className="mt-3 text-sm font-semibold text-accent-strong">{interaction.alignmentNote}</p>}
                 </motion.article>

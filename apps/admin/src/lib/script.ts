@@ -12,6 +12,7 @@ import {
 } from '@despega/simulator';
 
 export const SCREEN_LABELS: Readonly<Record<ScreenKind, string>> = {
+  factory: 'Mundo 3D · fábrica',
   notification: 'Notificación push',
   'video-call': 'Videollamada',
   chat: 'Chat',

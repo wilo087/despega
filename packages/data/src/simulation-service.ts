@@ -26,8 +26,8 @@ import {
  * nunca envía puntajes.
  */
 
-export function moduleFor(careerId: string): CareerModule {
-  const module = findModule(careerId);
+export function moduleFor(careerId: string, version?: number): CareerModule {
+  const module = findModule(careerId, version);
   if (!module) throw new DataError('MODULE_NOT_FOUND', 'Esta carrera todavía no tiene un módulo jugable.');
   return module;
 }
@@ -62,7 +62,7 @@ export async function beginSession(
   input: { studentId: string; careerId: string; sessionIndex: number; now: string },
 ): Promise<CareerProgressRecord> {
   const current = await requireProgress(config, input.studentId, input.careerId);
-  const module = moduleFor(input.careerId);
+  const module = moduleFor(input.careerId, current.moduleVersion);
   const state = startSession(module, current.state, { sessionIndex: input.sessionIndex, now: input.now });
   if (state === current.state) return current;
 
@@ -78,6 +78,7 @@ export async function submitSceneResponse(
     careerId: string;
     runId: string;
     expectedVersion: number;
+    commandId?: string;
     sceneId: string;
     response: SceneResponse;
     elapsedMs: number;
@@ -85,17 +86,21 @@ export async function submitSceneResponse(
   },
 ): Promise<{ record: CareerProgressRecord; outcome: AppliedOutcome }> {
   const current = await requireProgress(config, input.studentId, input.careerId);
+  if (input.commandId && current.runId === input.runId && current.state.factory?.lastCommandId === input.commandId) {
+    return { record: current, outcome: { sceneId: input.sceneId, sessionId: current.state.sessions[current.state.sessionIndex]!.id, outcomeId: 'replayed', label: 'Decisión recuperada', timedOut: false, performanceBefore: current.performance, performanceAfter: current.performance, performanceDelta: 0, affinityDelta: {}, reactions: [], narration: current.state.factory.lastReaction, detail: { kind: 'continue' }, sessionCompleted: false, moduleCompleted: current.status === 'completed' } };
+  }
   if (current.runId !== input.runId || current.version !== input.expectedVersion) {
     throw new DataError('CONFLICT', 'El progreso cambió en otra pestaña o dispositivo.');
   }
 
-  const module = moduleFor(input.careerId);
+  const module = moduleFor(input.careerId, current.moduleVersion);
   const { state, outcome } = applySceneResponse(module, current.state, {
     sceneId: input.sceneId,
     response: input.response,
     elapsedMs: input.elapsedMs,
     now: input.now,
   });
+  if (state.factory && input.commandId) state.factory.lastCommandId = input.commandId;
   const next = recordFromState({ ...current, version: current.version + 1, state });
   const event: DecisionEvent | undefined = outcome.detail.kind === 'continue'
     ? undefined

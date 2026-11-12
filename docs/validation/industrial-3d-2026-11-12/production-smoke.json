@@ -1,0 +1,37 @@
+[
+  {
+    "path": "/ingresar",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "contentLength": null,
+    "csp": "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self' data:; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; media-src 'self' blob:; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+  },
+  {
+    "path": "/factory-check",
+    "status": 404,
+    "contentType": "text/html; charset=utf-8",
+    "contentLength": null,
+    "csp": "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self' data:; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; media-src 'self' blob:; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+  },
+  {
+    "path": "/game-assets/envaplast/alma.glb",
+    "status": 200,
+    "contentType": "model/gltf-binary",
+    "contentLength": null,
+    "csp": "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self' data:; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; media-src 'self' blob:; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+  },
+  {
+    "path": "/game-assets/envaplast/portrait-alma.png",
+    "status": 200,
+    "contentType": "image/png",
+    "contentLength": "65059",
+    "csp": "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self' data:; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; media-src 'self' blob:; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+  },
+  {
+    "path": "/game-assets/envaplast/manifest.json",
+    "status": 200,
+    "contentType": "application/json; charset=UTF-8",
+    "contentLength": "882",
+    "csp": "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self' data:; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; media-src 'self' blob:; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+  }
+]

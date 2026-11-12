@@ -17,12 +17,12 @@ export function SignOutButton({ compact = false }: { compact?: boolean }) {
 export function SiteHeader({ student }: { student?: { givenName: string } | null }) {
   return (
     <header className="sticky top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        <BrandLink />
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-4 sm:gap-4 sm:px-6">
+        <BrandLink height={24} />
         <nav aria-label="Secciones" className="hidden items-center gap-7 text-sm font-semibold text-ink-soft md:flex">
-          <Link href="/#como-funciona" className="hover:text-ink">Cómo funciona</Link>
-          <Link href="/#carreras" className="hover:text-ink">Carreras</Link>
-          <Link href="/#colegios" className="hover:text-ink">Para colegios</Link>
+          <Link href="/experiencia#como-funciona" className="hover:text-ink">Cómo funciona</Link>
+          <Link href="/experiencia#carreras" className="hover:text-ink">Carreras</Link>
+          <Link href="/experiencia#colegios" className="hover:text-ink">Para colegios</Link>
         </nav>
         <div className="flex items-center gap-2">
           {student ? (
@@ -34,8 +34,8 @@ export function SiteHeader({ student }: { student?: { givenName: string } | null
             </>
           ) : (
             <>
-              <Link href="/ingresar" className="btn btn-ghost min-h-10 px-4">Ingresar</Link>
-              <Link href="/registro" className="btn btn-primary min-h-10 px-4">Empieza gratis</Link>
+              <Link href="/ingresar" className="btn btn-ghost btn-sm px-2 sm:px-4">Ingresar</Link>
+              <Link href="/registro" className="btn btn-primary btn-sm px-2 sm:px-4">Empieza gratis</Link>
             </>
           )}
         </div>
@@ -55,8 +55,8 @@ export function SiteFooter() {
           </p>
         </div>
         <nav aria-label="Pie de página" className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-ink-soft">
-          <Link href="/#como-funciona" className="hover:text-ink">Cómo funciona</Link>
-          <Link href="/#carreras" className="hover:text-ink">Carreras</Link>
+          <Link href="/experiencia#como-funciona" className="hover:text-ink">Cómo funciona</Link>
+          <Link href="/experiencia#carreras" className="hover:text-ink">Carreras</Link>
           <Link href="/registro" className="hover:text-ink">Crear cuenta</Link>
           <Link href="/ingresar" className="hover:text-ink">Ingresar</Link>
         </nav>

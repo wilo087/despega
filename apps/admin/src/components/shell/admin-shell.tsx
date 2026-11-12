@@ -31,7 +31,7 @@ export function AdminShell({ staff, children }: { staff: StaffSession; children:
           </Link>
         </div>
         <div className="flex-1 overflow-y-auto px-3 py-4">
-          <SideNav modules={modules} />
+          <SideNav modules={modules} showCrm={staff.groups.includes('despega/admin')} />
         </div>
         <div className="border-t border-line p-3">
           <div className="flex items-center gap-3 rounded-xl p-2" title={staff.email}>
@@ -65,7 +65,7 @@ export function AdminShell({ staff, children }: { staff: StaffSession; children:
         <main className="mx-auto w-full max-w-7xl flex-1 px-4 pb-28 pt-6 sm:px-6 lg:px-8 lg:pb-12 lg:pt-8">{children}</main>
       </div>
 
-      <TabBar />
+      <TabBar showCrm={staff.groups.includes('despega/admin')} />
     </div>
   );
 }

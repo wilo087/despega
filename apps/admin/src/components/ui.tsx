@@ -1,5 +1,6 @@
+import { IndustrialProfile, IndustrialRadar } from './industrial-profile';
 import { Alert, Card, Chip } from '@heroui/react';
-import { AFFINITY_AXES, AFFINITY_LABELS, AFFINITY_SHORT_LABELS, type AffinityAxis, type AffinityVector } from '@despega/simulator';
+import { AFFINITY_AXES, AFFINITY_LABELS, AFFINITY_SHORT_LABELS, type AffinityAxis, type AffinityVector } from '@despega/simulator/public';
 import type { LucideIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 
@@ -136,6 +137,7 @@ export function DataUnavailable({ what }: { what: string }) {
 
 /** Barras de magnitud por eje (serie única): el gemelo accesible del radar. */
 export function AffinityBars({ values, unavailable = [] }: { values: AffinityVector; unavailable?: readonly AffinityAxis[] }) {
+  if (values.numeric !== undefined) return <IndustrialProfile values={values} />;
   return (
     <ul className="grid gap-3">
       {AFFINITY_AXES.map((axis) => {
@@ -165,6 +167,7 @@ function point(index: number, ratio: number): [number, number] {
 
 /** Radar de 5 ejes (serie única, trazo de 2 px, relleno tenue, etiquetas en tinta). */
 export function AffinityRadar({ values, unavailable = [], width = 360 }: { values: AffinityVector; unavailable?: readonly AffinityAxis[]; width?: number }) {
+  if (values.numeric !== undefined) return <IndustrialRadar values={values} />;
   const ratio = (value: number) => Math.min(1, Math.max(0, value / 100));
   const polygon = AFFINITY_AXES.map((axis, index) => point(index, ratio(values[axis])).join(',')).join(' ');
   const label = AFFINITY_AXES.map((axis) => `${AFFINITY_LABELS[axis]} ${unavailable.includes(axis) ? 'sin datos' : values[axis]}`).join('; ');

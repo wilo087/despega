@@ -1,4 +1,4 @@
-import { CAREERS } from '@despega/simulator';
+import { CAREERS } from '@despega/simulator/public';
 import { ArrowLeft, ChevronRight, LogOut } from 'lucide-react';
 import Link from 'next/link';
 import type { ReactNode } from 'react';

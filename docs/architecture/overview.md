@@ -1,16 +1,17 @@
 # Arquitectura de DESPEGA
 
-Estado: 2026-09-28. Prototipo funcional local e infraestructura DEV desplegada en
+Estado: 2026-11-12. Industrial 3D se implementó localmente, sin publicar (ADR 0009). Mejoras de plataforma y guion v3 implementados localmente;
+no publicados. Prototipo funcional local e infraestructura DEV desplegada en
 `qrioso-dev` (`779926948601`, `us-east-1`); jobs `4` de web/admin `SUCCEED` con `9cbd877`.
 Las apps locales comparten DynamoDB de DEV mediante SSO, sin contenedor Docker.
 Los flujos autenticados de Cognito y del simulador en AWS aún requieren validación.
 
 ## Objetivos
 
-- Que un estudiante viva la semana completa de Ingeniería de Software: 3 sesiones, las 5
+- Que un estudiante viva la experiencia completa de Ingeniería de Software: 3 sesiones, las 5
   mecánicas de interacción, relojes visibles, memoria entre sesiones y resultados.
 - Guardar desempeño y perfil de afinidad **por carrera** desde el primer día.
-- Reutilizar la misma mecánica para 14 carreras cambiando solo contenido.
+- Reutilizar la misma mecánica para las 19 carreras del catálogo actual cambiando solo contenido.
 - Operar en AWS con el menor número de piezas: sin API Gateway ni Lambdas de dominio.
 - Dar al equipo de DESPEGA y a orientadores un backoffice con resultados y trazabilidad.
 
@@ -54,7 +55,7 @@ flowchart LR
 | Pieza | Responsabilidad |
 | --- | --- |
 | `apps/web` | Landing pública, registro/ingreso de estudiantes, `/inicio`, hub de carrera con resultados y reproductor del simulador. |
-| `apps/admin` | Backoffice con HeroUI: panel del piloto, estudiantes, detalle con registro de decisiones, reinicio de intentos y visor del guión. |
+| `apps/admin` | Backoffice con HeroUI: panel del piloto, estudiantes, detalle con registro de decisiones, reinicio de intentos, visor del guión y CRM de encuestas. |
 | `packages/simulator` | Tipos del contenido, motor (`applySceneResponse`, `startSession`, `getPublicScene`), afinidad, validación y los módulos de carrera. Sin I/O. |
 | `packages/data` | Esquema DynamoDB, repositorios y casos de uso (`ensureCareerProgress`, `beginSession`, `submitSceneResponse`, `restartCareer`, `careerOverview`). |
 | `packages/auth` | Cognito del lado del servidor (login, registro, confirmación, recuperación, refresh, revocación, verificación JWT) y la sesión local firmada. |
@@ -136,3 +137,35 @@ Apps de Amplify en `despega.qrioso.do` y `despega.admin.qrioso.do`. Las cuentas 
   al escribir y un índice de búsqueda.
 - Las URLs de `prd` en los `.env.production` son marcadores `*.despega.example`:
   reemplazarlas por los dominios reales antes de desplegar `prd`.
+
+## Actualización local de octubre de 2026
+
+La fuente complementaria del cliente está normalizada en
+`docs/requirements/2026-10-30-actualizaciones-plataforma.md`. El catálogo tiene 19
+carreras, una jugable. La escena 1.3 de v3 presenta comentarios para investigar y
+continúa al diagnóstico sin clasificación ni puntaje. `Scene.reports` y el glosario
+son contenido declarativo del módulo. El sonido opcional usa Web Audio en el
+navegador; no agrega servicios. Los intentos resuelven su versión persistida,
+incluida la normalización de afinidad y los agregados (ADR 0008). El formato de
+fechas del backoffice fija Santo Domingo; los instantes permanecen en UTC.
+
+## Ingeniería Industrial 3D
+
+El segundo módulo utiliza una presentación Babylon.js en el navegador y conserva
+los componentes de servidor existentes. Motor puro, proyección pública y datos
+por carrera; detalles en [Industrial 3D](industrial-3d.md) y ADR 0009.
+
+La guía de controles guarda un estado opcional dentro del intento y mantiene
+detenidos los relojes y la producción. No es una actividad evaluable y usa el
+mismo límite servidor/datos. Arte y actuación consumen geometría compartida,
+modelos Blender y clips de pose completa; ver ADR 0010.
+
+## Captación y CRM (2026-11-12)
+
+La portada pública se reemplaza por el landing de investigación del cliente y la
+presentación anterior se conserva en `/experiencia`. La encuesta en cuatro pasos
+usa una Server Action pública, Zod y `@despega/data`; sus respuestas se conservan
+fuera de perfiles y progresos del simulador. `/crm` del admin ofrece seguimiento,
+exportación CSV y métricas diarias, solo para administración. No hay CRM externo,
+API Gateway, servicios nuevos ni campañas automáticas. Ver ADR 0011 y el patrón
+completo en `data-model.md`. Implementación local, sin despliegue autorizado.

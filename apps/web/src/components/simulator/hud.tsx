@@ -1,6 +1,6 @@
 'use client';
 
-import { COMPLAINT_INTERVAL_MS, type HudState, type PublicScene } from '@despega/simulator';
+import { COMPLAINT_INTERVAL_MS, type HudState, type PublicScene } from '@despega/simulator/public';
 import { BarChart3, CheckCircle2, Clock, Rocket, TrendingUp, X } from 'lucide-react';
 import { AnimatePresence, animate, motion, useMotionValue, useTransform } from 'motion/react';
 import Link from 'next/link';

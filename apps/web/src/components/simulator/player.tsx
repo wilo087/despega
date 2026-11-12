@@ -8,6 +8,7 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { beginSessionAction, reloadProgressAction, submitSceneAction } from '@/app/simulador/[careerId]/actions';
 import type { ActionFailure, ModuleView, ProgressView, SubmitResult } from '@/lib/simulation-types';
 import { PlayerHud } from './hud';
+import { GlossaryProvider } from './glossary';
 import { InteractionView } from './interactions';
 import { OutcomeSheet } from './outcome-sheet';
 import { CutsceneScreen } from './screens/cutscene';
@@ -181,6 +182,7 @@ export function SimulatorPlayer({
   ) : null;
 
   return (
+    <GlossaryProvider entries={module.glossary ?? []}>
     <div className="bg-dots flex min-h-dvh flex-col bg-paper lg:h-dvh lg:overflow-hidden">
       <PlayerHud module={module} scene={scene} hud={hud} progress={progress} frozen={Boolean(outcome && !nextScene)} />
 
@@ -251,6 +253,7 @@ export function SimulatorPlayer({
         )}
       </AnimatePresence>
     </div>
+    </GlossaryProvider>
   );
 }
 

@@ -82,3 +82,11 @@ export type TableKey = keyof typeof TABLES;
 export function physicalTableName(stage: string, table: TableKey): string {
   return `despega_${stage}_${TABLES[table].suffix}`.replaceAll('-', '_');
 }
+
+/** Encuesta y CRM comparten core; consultas por clave primaria, sin nuevos GSI. */
+export const SURVEY_STORAGE = {
+  leadsPartition: 'SURVEY#landing-v1',
+  metricsPartition: 'SURVEYMETRICS#landing-v1',
+  responsePrefix: 'RESPONSE#',
+  receiptPrefix: 'SURVEYSUBMISSION#',
+} as const;

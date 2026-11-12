@@ -52,7 +52,7 @@ export function PrioritizationInteraction({ interaction, locked, outcome, onSubm
           <DropZone id={POOL} disabled={locked} className="rounded-xl bg-mist p-3">
             <p className="mb-2 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-muted">
               {reveal ? <CircleSlash className="size-4" aria-hidden /> : <ListTodo className="size-4" aria-hidden />}
-              {reveal ? 'Queda fuera esta semana' : `Pendientes (${pending.length})`}
+              {reveal ? 'Queda fuera de esta experiencia' : `Pendientes (${pending.length})`}
             </p>
             <div className="grid gap-2">
               {pending.map((task) => (
@@ -71,7 +71,7 @@ export function PrioritizationInteraction({ interaction, locked, outcome, onSubm
           </DropZone>
           <div className="rounded-xl border-2 border-good/30 bg-good-soft/40 p-3">
             <p className="mb-2 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-good-strong">
-              <CalendarCheck className="size-4" aria-hidden /> Tablero de esta semana ({slots.filter(Boolean).length}/{interaction.slots})
+              <CalendarCheck className="size-4" aria-hidden /> Tablero de esta experiencia ({slots.filter(Boolean).length}/{interaction.slots})
             </p>
             <div className="grid gap-2">
               {slots.map((taskId, index) => {

@@ -1,6 +1,6 @@
 'use client';
 
-import { AFFINITY_LABELS, AFFINITY_SHORT_LABELS, emptyAffinity, type AffinityAxis, type PublicScene } from '@despega/simulator';
+import { AFFINITY_LABELS, AFFINITY_SHORT_LABELS, emptyAffinity, type AffinityAxis, type PublicScene } from '@despega/simulator/public';
 import { ArrowRight, CalendarClock, Timer } from 'lucide-react';
 import { animate, motion, useMotionValue, useTransform } from 'motion/react';
 import { useEffect } from 'react';
@@ -9,8 +9,9 @@ import type { ModuleView } from '@/lib/simulation-types';
 import { AffinityBars } from '../affinity-radar';
 import { AnimatedAffinityRadar } from '../animated-affinity-radar';
 import { speakerName } from '../conversation';
+import { GlossaryText } from '../glossary';
 
-/** «Tu semana en PixelForge»: desempeño, perfil de afinidad animado y lo que pasó. */
+/** «Tu experiencia como Practicante Junior en la empresa PixelForge»: desempeño, perfil de afinidad animado y lo que pasó. */
 export function SummaryScreen({
   scene,
   module,
@@ -26,7 +27,7 @@ export function SummaryScreen({
   if (interaction.kind !== 'summary') return null;
   const { summary } = interaction;
   const delta = summary.performance - summary.performanceStart;
-  const strongest = summary.affinity.ranking.filter((axis) => summary.affinity.normalized[axis] > 0).slice(0, 2);
+  const strongest = summary.affinity.ranking.filter((axis) => (summary.affinity.normalized[axis] ?? 0) > 0).slice(0, 2);
 
   return (
     <section className="card overflow-hidden p-0">
@@ -40,7 +41,7 @@ export function SummaryScreen({
             <p className="font-sans text-6xl font-bold"><CountUp from={summary.performanceStart} to={summary.performance} /><span className="text-2xl text-white/60"> / 100</span></p>
           </div>
           <span className={`chip mb-3 ${delta >= 0 ? 'bg-good text-white' : 'bg-bad text-white'}`}>
-            {delta >= 0 ? `▲ +${delta}` : `▼ ${delta}`} {interaction.scope === 'module' ? 'en la semana' : 'en esta sesión'}
+            {delta >= 0 ? `▲ +${delta}` : `▼ ${delta}`} {interaction.scope === 'module' ? 'en la experiencia' : 'en esta sesión'}
           </span>
         </div>
       </div>
@@ -70,12 +71,12 @@ export function SummaryScreen({
               <CharacterAvatar characterId={summary.closing.speaker} mood="happy" size={64} decorative />
               <div>
                 <p className="text-xs font-bold text-muted">{speakerName(module, summary.closing.speaker)}</p>
-                <p className="mt-1 rounded-xl rounded-bl-md bg-mist px-4 py-3 text-ink">{summary.closing.text}</p>
+                <p className="mt-1 rounded-xl rounded-bl-md bg-mist px-4 py-3 text-ink"><GlossaryText text={summary.closing.text} /></p>
               </div>
             </div>
           )}
           <div>
-            <h3 className="text-lg font-bold">{interaction.scope === 'module' ? 'Momentos que marcaron tu semana' : 'Lo que decidiste'}</h3>
+            <h3 className="text-lg font-bold">{interaction.scope === 'module' ? 'Momentos que marcaron tu experiencia' : 'Lo que decidiste'}</h3>
             <ol className="mt-3 grid gap-2">
               {summary.highlights.map((highlight, index) => (
                 <motion.li

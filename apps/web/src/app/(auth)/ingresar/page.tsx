@@ -26,7 +26,7 @@ export default async function SignInPage({ searchParams }: PageProps<'/ingresar'
       icon={LogIn}
       badge="Hola de nuevo"
       title="Entra a tu simulador"
-      description="Retoma tu semana en PixelForge justo donde la dejaste."
+      description="Retoma tu experiencia en PixelForge justo donde la dejaste."
       footer={<>¿Todavía no tienes cuenta? <Link href="/registro" className="font-semibold text-accent hover:underline">Crear cuenta</Link></>}
     >
       {mode === 'error' ? <AuthConfigError /> : (

@@ -1,3 +1,5 @@
+import { COMPLAINT_INTERVAL_MS } from './constants.ts';
+import { initialFactoryState, getFactoryScene, applyFactoryResponse, factoryAffinity } from './factory/engine.ts';
 import {
   addAffinity,
   buildAffinityProfile,
@@ -35,7 +37,7 @@ import type {
 } from './types.ts';
 
 /** Cada cuánto sube en una unidad el contador de quejas mientras el problema sigue activo. */
-export const COMPLAINT_INTERVAL_MS = 3_000;
+export { COMPLAINT_INTERVAL_MS } from './constants.ts';
 /** Tope del tiempo reportado por escena; evita que una pestaña olvidada distorsione el registro. */
 export const MAX_SCENE_ELAPSED_MS = 30 * 60 * 1_000;
 export const MAX_PLAYER_NAME_LENGTH = 40;
@@ -80,7 +82,8 @@ export function createInitialState(
     sessionIndex: 0,
     sceneIndex: 0,
     performance: clamp(module.initialPerformance, 0, 100),
-    affinity: emptyAffinity(),
+    affinity: module.presentation === 'factory' ? { ...emptyAffinity(), numeric: 0 } : emptyAffinity(),
+    ...(module.presentation === 'factory' ? { factory: initialFactoryState() } : {}),
     flags: { ...module.initialFlags },
     sessions: module.sessions.map((session, index) => ({
       id: session.id,
@@ -144,6 +147,7 @@ export function currentSceneDefinition(
 
 export function getPublicScene(module: CareerModule, state: SimulationState): PublicScene | null {
   assertModule(module, state);
+  if (module.presentation === 'factory') return getFactoryScene(module, state);
   const current = currentSceneDefinition(module, state);
   if (!current) return null;
   const { session, scene } = current;
@@ -170,6 +174,7 @@ export function getPublicScene(module: CareerModule, state: SimulationState): Pu
       signature: scene.email.signature,
     },
     visual: scene.visual,
+    reports: scene.reports?.map(({ id, from, title, body }) => ({ id, from, title, body })),
     session: { id: session.id, number: session.number, title: session.title },
     sceneNumber: state.sceneIndex + 1,
     sceneCount: session.scenes.length,
@@ -194,6 +199,8 @@ export function applySceneResponse(
   if (scene.id !== input.sceneId) {
     throw new SimulationError('SCENE_MISMATCH', 'La escena ya no es la actual; recarga el progreso.');
   }
+
+  if (module.presentation === 'factory') return applyFactoryResponse(module, state, input);
 
   const elapsedMs = clamp(Math.round(Number.isFinite(input.elapsedMs) ? input.elapsedMs : 0), 0, MAX_SCENE_ELAPSED_MS);
   const before = contextOf(state);
@@ -352,6 +359,7 @@ export function progressSnapshot(module: CareerModule, state: SimulationState): 
  * radar de la sesión 1 no aparece vacío por puntos que todavía no se podían ganar.
  */
 export function affinityProfileOf(module: CareerModule, state: SimulationState): AffinityProfile {
+  if (module.presentation === 'factory') return factoryAffinity(state);
   const lastPlayed = state.sessions.reduce(
     (latest, session, index) => session.status === 'in_progress' || session.status === 'completed' ? index : latest,
     0,
@@ -369,7 +377,7 @@ export function scoreBranches(module: CareerModule, state: SimulationState): Sco
   const profile = buildAffinityProfile(state.affinity, cumulativeAffinityMaximum(module, module.sessions.length - 1));
   const scored = timeline.branches.map((branch) => ({
     ...branch,
-    score: Math.round(branch.axes.reduce((sum, axis) => sum + profile.normalized[axis], 0) / Math.max(1, branch.axes.length)),
+    score: Math.round(branch.axes.reduce((sum, axis) => sum + (profile.normalized[axis] ?? 0), 0) / Math.max(1, branch.axes.length)),
   }));
   const best = scored.reduce((winner, branch) => (branch.score > winner.score ? branch : winner), scored[0]!);
   return scored.map((branch) => ({ ...branch, aligned: branch.id === best.id }));
@@ -762,7 +770,7 @@ function contextOf(state: SimulationState): ConditionContext {
 }
 
 function assertModule(module: CareerModule, state: SimulationState): void {
-  if (state.moduleId !== module.id || state.careerId !== module.careerId) {
+  if (state.moduleId !== module.id || state.careerId !== module.careerId || state.moduleVersion !== module.version) {
     throw new SimulationError('MODULE_MISMATCH', 'El progreso no pertenece a este módulo.');
   }
 }
