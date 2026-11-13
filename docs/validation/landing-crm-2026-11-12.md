@@ -1,5 +1,9 @@
 # Validación del landing y CRM — 2026-11-12
 
+Este informe registra la implementación y validación local previas. La publicación
+posterior autorizada y las pruebas contra Amplify/Cognito reales se documentan en
+[Despliegue DEV del 2026-11-12](dev-release-2026-11-12.md).
+
 ## Alcance y autorización
 
 Solicitud: implementar landing/encuesta desde el DOCX del cliente, guardar

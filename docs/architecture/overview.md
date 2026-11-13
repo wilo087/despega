@@ -1,10 +1,12 @@
 # Arquitectura de DESPEGA
 
-Estado: 2026-11-12. Industrial 3D se implementó localmente, sin publicar (ADR 0009). Mejoras de plataforma y guion v3 implementados localmente;
-no publicados. Prototipo funcional local e infraestructura DEV desplegada en
-`qrioso-dev` (`779926948601`, `us-east-1`); jobs `4` de web/admin `SUCCEED` con `9cbd877`.
+Estado: 2026-11-12. Industrial 3D, mejoras de plataforma/guion v3 y landing/CRM
+publicados en DEV. Infraestructura en `qrioso-dev` (`779926948601`, `us-east-1`),
+stack `UPDATE_COMPLETE`; jobs `6` de web/admin `SUCCEED` con `a36d608`.
+Ingreso Cognito, cambio inicial de contraseña de staff, permisos CRM y arranque
+Industrial verificados en AWS. Correo/recuperación/refresh/revocación y UAT física
+siguen pendientes. Ver [evidencia DEV](../validation/dev-release-2026-11-12.md).
 Las apps locales comparten DynamoDB de DEV mediante SSO, sin contenedor Docker.
-Los flujos autenticados de Cognito y del simulador en AWS aún requieren validación.
 
 ## Objetivos
 
@@ -138,11 +140,12 @@ Apps de Amplify en `despega.qrioso.do` y `despega.admin.qrioso.do`. Las cuentas 
 - Las URLs de `prd` en los `.env.production` son marcadores `*.despega.example`:
   reemplazarlas por los dominios reales antes de desplegar `prd`.
 
-## Actualización local de octubre de 2026
+## Actualización de octubre de 2026
 
 La fuente complementaria del cliente está normalizada en
 `docs/requirements/2026-10-30-actualizaciones-plataforma.md`. El catálogo tiene 19
-carreras, una jugable. La escena 1.3 de v3 presenta comentarios para investigar y
+carreras; la actualización original tenía una jugable y ahora se suma Industrial.
+La escena 1.3 de v3 presenta comentarios para investigar y
 continúa al diagnóstico sin clasificación ni puntaje. `Scene.reports` y el glosario
 son contenido declarativo del módulo. El sonido opcional usa Web Audio en el
 navegador; no agrega servicios. Los intentos resuelven su versión persistida,
@@ -168,4 +171,5 @@ usa una Server Action pública, Zod y `@despega/data`; sus respuestas se conserv
 fuera de perfiles y progresos del simulador. `/crm` del admin ofrece seguimiento,
 exportación CSV y métricas diarias, solo para administración. No hay CRM externo,
 API Gateway, servicios nuevos ni campañas automáticas. Ver ADR 0011 y el patrón
-completo en `data-model.md`. Implementación local, sin despliegue autorizado.
+completo en `data-model.md`. Publicado en DEV con autorización explícita; permiso
+UpdateItem del rol SSR admin aplicado y comprobado mediante seguimiento real.

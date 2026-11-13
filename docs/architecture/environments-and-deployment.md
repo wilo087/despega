@@ -2,9 +2,10 @@
 
 Estado: `dev` apunta a la cuenta de desarrollo de Qrioso (`779926948601`, perfil
 `qrioso-dev`), con sus Apps de Amplify registradas en `infra/cdk.json` y sus dominios
-`AVAILABLE`. `Despega-dev` está en `CREATE_COMPLETE` tras corregir el configurador de
-Amplify. Tras el rechazo por tamaño de los jobs `3`, los jobs `4` de ambas apps
-(`9cbd877`, rama `develop`) terminaron `SUCCEED`, sin aumentar capacidad.
+`AVAILABLE`. `Despega-dev` está en `UPDATE_COMPLETE` tras el despliegue autorizado
+del 2026-11-12. Los jobs `6` de ambas apps (`a36d608`, rama `develop`) terminaron
+`SUCCEED`. Landing/encuesta, CRM, acceso Cognito y arranque de Industrial verificados;
+ver [evidencia DEV](../validation/dev-release-2026-11-12.md).
 `prd` sintetiza pero no tiene cuenta ni despliegue.
 
 ## Matriz
@@ -171,9 +172,8 @@ pnpm infra:deploy:dev  # requiere autorización explícita
 ## Landing y CRM
 
 No agregan variables, tablas, GSI ni dependencias. La política del rol SSR admin
-necesita un nuevo permiso UpdateItem en `core`, condicionado a la partición CRM.
-Este cambio se entrega en CDK; hace falta un despliegue autorizado antes de usar
-el seguimiento en Amplify. Los perfiles locales SSO pueden validarlo en DEV sin
-modificar los roles desplegados. No se ejecuta deploy con esta implementación.
+incluye UpdateItem en `core`, condicionado a la partición `SURVEY#landing-v1` con
+`dynamodb:LeadingKeys`. Se aplicó mediante CDK en el despliegue DEV autorizado del
+2026-11-12 y se verificó guardando seguimiento desde Amplify con Cognito real.
 Antes de la apertura pública se revisan aviso, retención, canal del responsable y
 el procedimiento declarado de autorización del tutor (ADR 0011).

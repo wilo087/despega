@@ -1,5 +1,17 @@
 # Changelog del proyecto
 
+## 2026-11-12 — Publicación y validación en qrioso-dev
+
+- Publicación autorizada del commit `a36d608a902ea45809223a82f4c078abf0134e18`
+  de `develop`: jobs `6` de web/admin en `SUCCEED`.
+- Stack `Despega-dev` actualizado en `779926948601`, `us-east-1`; permiso de
+  seguimiento CRM limitado a su partición y comprobado desde el rol SSR admin.
+- Validación real de encuesta, autorización del tutor, KPI, seguimiento, CSV,
+  restricción de orientación, ingreso Cognito y contraseña nueva de staff.
+- Acceso a ambas carreras, recursos 3D y arranque de Industrial verificados sin
+  errores de JavaScript. Cuentas y datos temporales de esta validación retirados.
+- Evidencia y límites en `docs/validation/dev-release-2026-11-12.md`.
+
 ## 2026-11-12 — Landing, encuesta y CRM interno
 
 - Landing según documento del cliente; presentación previa en `/experiencia`.
